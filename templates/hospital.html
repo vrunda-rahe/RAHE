@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE - Search Hospital</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef7ff, #fff4f8);
+            min-height: 100vh;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: linear-gradient(90deg, #008cff, #00a9df);
+            padding: 18px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover {
+            color: yellow;
+        }
+
+        .logout {
+            background: #ff304f;
+            padding: 9px 18px;
+            border-radius: 8px;
+        }
+
+        /* HOSPITAL LOGIN BUTTON */
+
+        .hospital-login-btn {
+            background: #7b2cff;
+            color: white !important;
+            padding: 9px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .hospital-login-btn:hover {
+            background: #5f19d6;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: 94%;
+            max-width: 1250px;
+            margin: 35px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            color: #1457a6;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        /* =========================
+           SEARCH BOX
+        ========================= */
+
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+            margin-bottom: 35px;
+        }
+
+        .search-box h2 {
+            color: #1457a6;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #008cff;
+        }
+
+        .search-button {
+            grid-column: 1/-1;
+            border: none;
+            background: linear-gradient(90deg,#086cff,#00a8df);
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            opacity: 0.9;
+        }
+
+        .clear-button {
+            grid-column: 1/-1;
+            text-align: center;
+            text-decoration: none;
+            color: #1457a6;
+            font-weight: bold;
+            margin-top: -8px;
+        }
+
+        /* =========================
+           RESULT HEADING
+        ========================= */
+
+        .result-heading {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .result-heading h2 {
+            color: #1457a6;
+            margin-bottom: 8px;
+        }
+
+        .result-heading p {
+            color: #666;
+        }
+
+        /* =========================
+           HOSPITAL GRID
+        ========================= */
+
+        .hospital-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 25px;
+        }
+
+        .hospital-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+            border-left: 5px solid #008cff;
+            transition: 0.3s;
+        }
+
+        .hospital-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+        }
+
+        .hospital-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .hospital-title h3 {
+            color: #1457a6;
+            font-size: 23px;
+        }
+
+        .hospital-icon {
+            font-size: 40px;
+        }
+
+        .hospital-info {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        .hospital-info strong {
+            color: #222;
+        }
+
+        /* =========================
+           BEDS
+        ========================= */
+
+        .beds {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .bed-box {
+            background: #f3f8ff;
+            padding: 13px 8px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .bed-box strong {
+            display: block;
+            color: #1457a6;
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .bed-box span {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .emergency-bed {
+            background: #fff0f2;
+        }
+
+        .emergency-bed strong {
+            color: #e90032;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .hospital-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 9px;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .call-btn {
+            background: #159447;
+        }
+
+        .map-btn {
+            background: #086cff;
+        }
+
+        .call-btn:hover {
+            background: #0d7134;
+        }
+
+        .map-btn:hover {
+            background: #064fbd;
+        }
+
+        /* =========================
+           NO RESULT
+        ========================= */
+
+        .no-result {
+            background: white;
+            padding: 45px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+        }
+
+        .no-result-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .no-result h2 {
+            color: #1457a6;
+            margin-bottom: 10px;
+        }
+
+        .no-result p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-section {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #1457a6;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #0d4282;
+        }
+
+        /* =========================
+           COMMON POPUP
+        ========================= */
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.65);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .popup-box {
+            width: 400px;
+            max-width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+            animation: popupShow 0.25s ease;
+        }
+
+        @keyframes popupShow {
+
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+        .popup-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .popup-box h2 {
+            color: #1457a6;
+            margin-bottom: 15px;
+        }
+
+        .popup-hospital {
+            font-size: 19px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .popup-number {
+            font-size: 25px;
+            font-weight: bold;
+            color: #159447;
+            margin: 15px 0;
+        }
+
+        .popup-message {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           CALL POPUP BUTTONS
+        ========================= */
+
+        .popup-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .call-now-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: #159447;
+            color: white;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .call-now-button:hover {
+            background: #0d7134;
+        }
+
+        .popup-close {
+            width: 100%;
+            border: none;
+            padding: 13px;
+            border-radius: 10px;
+            background: #555;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup-close:hover {
+            background: #333;
+        }
+
+        /* =====================================================
+           HOSPITAL LOGIN / REGISTER
+        ===================================================== */
+
+        .auth-box {
+            width: 430px;
+            max-width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+            position: relative;
+        }
+
+        .auth-icon {
+            text-align: center;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .auth-title {
+            text-align: center;
+            color: #1457a6;
+            margin-bottom: 20px;
+        }
+
+        .auth-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .auth-tab {
+            padding: 12px;
+            border: none;
+            border-radius: 9px;
+            background: #e9eef5;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .auth-tab.active {
+            background: linear-gradient(90deg,#086cff,#00a8df);
+            color: white;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .auth-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        .auth-group input,
+        .auth-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .auth-group input:focus,
+        .auth-group select:focus {
+            border-color: #008cff;
+        }
+
+        .auth-submit {
+            width: 100%;
+            border: none;
+            padding: 13px;
+            border-radius: 9px;
+            background: linear-gradient(90deg,#086cff,#00a8df);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .auth-submit:hover {
+            opacity: 0.9;
+        }
+
+        .auth-close {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border: none;
+            border-radius: 9px;
+            background: #555;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .auth-close:hover {
+            background: #333;
+        }
+
+        .auth-message {
+            text-align: center;
+            margin-top: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width:900px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hospital-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width:650px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .beds {
+                grid-template-columns: 1fr;
+            }
+
+            .hospital-buttons {
+                flex-direction: column;
+            }
+
+            .popup-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-box {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('emergency_contact') }}">
+            Emergency
+        </a>
+
+        <a href="{{ url_for('nearest') }}">
+            Nearest
+        </a>
+
+        <!-- HOSPITAL LOGIN -->
+
+        <a href="javascript:void(0)"
+           class="hospital-login-btn"
+           onclick="openHospitalAuth()">
+
+            🏥 Hospital Login
+
+        </a>
+
+        <a href="{{ url_for('logout') }}"
+           class="logout">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- HEADING -->
+
+    <div class="heading">
+
+        <h1>
+            🔍 Search Hospital
+        </h1>
+
+        <p>
+            Search hospitals by district, city and bed type.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         SEARCH FORM
+    ================================================== -->
+
+    <div class="search-box">
+
+        <h2>
+            Find Available Hospital
+        </h2>
+
+        <form method="GET"
+              action="{{ url_for('hospital') }}">
+
+            <div class="form-grid">
+
+
+                <!-- DISTRICT -->
+
+                <div class="form-group">
+
+                    <label for="district">
+                        District
+                    </label>
+
+                    <select name="district"
+                            id="district">
+
+                        <option value="">
+                            All Districts
+                        </option>
+
+                        {% for d in districts %}
+
+                            <option value="{{ d }}"
+                                {% if district == d %}
+                                    selected
+                                {% endif %}>
+
+                                {{ d }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="form-group">
+
+                    <label for="city">
+                        City / Village
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        value="{{ city or '' }}"
+                        placeholder="Enter city or village">
+
+                </div>
+
+
+                <!-- BED TYPE -->
+
+                <div class="form-group">
+
+                    <label for="bed_type">
+                        Bed Type
+                    </label>
+
+                    <select name="bed_type"
+                            id="bed_type">
+
+                        <option value="">
+                            All Beds
+                        </option>
+
+                        <option value="General"
+                            {% if bed_type == "General" %}
+                                selected
+                            {% endif %}>
+
+                            General Bed
+
+                        </option>
+
+                        <option value="ICU"
+                            {% if bed_type == "ICU" %}
+                                selected
+                            {% endif %}>
+
+                            ICU Bed
+
+                        </option>
+
+                        <option value="Emergency"
+                            {% if bed_type == "Emergency" %}
+                                selected
+                            {% endif %}>
+
+                            Emergency Bed
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <button type="submit"
+                        class="search-button">
+
+                    🔍 Search Hospital
+
+                </button>
+
+
+                <!-- CLEAR -->
+
+                <a href="{{ url_for('hospital') }}"
+                   class="clear-button">
+
+                    Clear Search
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- =================================================
+         RESULTS
+    ================================================== -->
+
+    <div class="result-heading">
+
+        <h2>
+            🏥 Available Hospitals
+        </h2>
+
+        <p>
+            Hospitals matching your search
+        </p>
+
+    </div>
+
+
+    {% if hospitals %}
+
+        <div class="hospital-grid">
+
+            {% for hospital in hospitals %}
+
+                <div class="hospital-card">
+
+
+                    <!-- TITLE -->
+
+                    <div class="hospital-title">
+
+                        <h3>
+                            {{ hospital["hospital_name"] }}
+                        </h3>
+
+                        <div class="hospital-icon">
+                            🏥
+                        </div>
+
+                    </div>
+
+
+                    <!-- INFORMATION -->
+
+                    <div class="hospital-info">
+
+                        <div>
+
+                            <strong>
+                                📍 Address:
+                            </strong>
+
+                            {{ hospital["address"] or "Not available" }}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                🏙️ District:
+                            </strong>
+
+                            {{ hospital["district"] or "Not available" }}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                📌 City:
+                            </strong>
+
+                            {{ hospital["city"] or "Not available" }}
+
+                        </div>
+
+
+                        {% if hospital["village"] %}
+
+                            <div>
+
+                                <strong>
+                                    🏘️ Village:
+                                </strong>
+
+                                {{ hospital["village"] }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <div>
+
+                            <strong>
+                                📞 Contact:
+                            </strong>
+
+                            {{ hospital["contact"] or "Not available" }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BED COUNTS -->
+
+                    <div class="beds">
+
+                        <div class="bed-box">
+
+                            <strong>
+                                {{ hospital["general_beds"] or 0 }}
+                            </strong>
+
+                            <span>
+                                General Beds
+                            </span>
+
+                        </div>
+
+
+                        <div class="bed-box">
+
+                            <strong>
+                                {{ hospital["icu_beds"] or 0 }}
+                            </strong>
+
+                            <span>
+                                ICU Beds
+                            </span>
+
+                        </div>
+
+
+                        <div class="bed-box emergency-bed">
+
+                            <strong>
+                                {{ hospital["emergency_beds"] or 0 }}
+                            </strong>
+
+                            <span>
+                                Emergency Beds
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="hospital-buttons">
+
+
+                        <!-- CALL -->
+
+                        {% if hospital["contact"] %}
+
+                            <button
+                                type="button"
+                                class="btn call-btn"
+                                data-hospital-name="{{ hospital['hospital_name'] | e }}"
+                                data-contact="{{ hospital['contact'] | e }}"
+                                onclick="showCallPopupFromButton(this)">
+
+                                📞 Call
+
+                            </button>
+
+                        {% else %}
+
+                            <button
+                                type="button"
+                                class="btn call-btn"
+                                onclick="showNoContactPopup()">
+
+                                📞 Contact N/A
+
+                            </button>
+
+                        {% endif %}
+
+
+                        <!-- MAP -->
+
+                        {% if hospital["latitude"] is not none
+                              and hospital["longitude"] is not none %}
+
+                            <a
+                                href="https://www.google.com/maps/dir/?api=1&destination={{ hospital['latitude'] }},{{ hospital['longitude'] }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn map-btn">
+
+                                📍 Directions
+
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query={{ hospital['hospital_name'] | urlencode }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn map-btn">
+
+                                📍 View Map
+
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- NO RESULT -->
+
+        <div class="no-result">
+
+            <div class="no-result-icon">
+                🏥
+            </div>
+
+            <h2>
+                No Hospitals Found
+            </h2>
+
+            <p>
+
+                No hospital matches your current search.
+
+                <br>
+
+                Try another district, city or bed type.
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- BACK -->
+
+    <div class="back-section">
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-button">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     CALL HOSPITAL POPUP
+===================================================== -->
+
+<div id="callPopup"
+     class="popup-overlay">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+            📞
+        </div>
+
+        <h2>
+            Call Hospital
+        </h2>
+
+        <div id="popupHospitalName"
+             class="popup-hospital">
+
+            Hospital
+
+        </div>
+
+        <div id="popupNumber"
+             class="popup-number">
+
+            0000000000
+
+        </div>
+
+        <p class="popup-message">
+
+            Do you want to call this hospital?
+
+        </p>
+
+
+        <div class="popup-buttons">
+
+            <a
+                id="callNowButton"
+                href="#"
+                class="call-now-button">
+
+                📞 Call Now
+
+            </a>
+
+
+            <button
+                type="button"
+                class="popup-close"
+                onclick="closeCallPopup()">
+
+                ❌ Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NO CONTACT POPUP
+===================================================== -->
+
+<div id="noContactPopup"
+     class="popup-overlay">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+            ⚠️
+        </div>
+
+        <h2>
+            Contact Not Available
+        </h2>
+
+        <p class="popup-message">
+
+            This hospital does not have a contact number.
+
+        </p>
+
+        <button
+            type="button"
+            class="popup-close"
+            onclick="closeNoContactPopup()">
+
+            ❌ Close
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HOSPITAL LOGIN / REGISTER POPUP
+===================================================== -->
+
+<div id="hospitalAuthPopup"
+     class="popup-overlay">
+
+    <div class="auth-box">
+
+
+        <!-- ICON -->
+
+        <div class="auth-icon">
+            🏥
+        </div>
+
+
+        <h2 class="auth-title">
+            Hospital Portal
+        </h2>
+
+
+        <!-- LOGIN / REGISTER TABS -->
+
+        <div class="auth-tabs">
+
+            <button
+                type="button"
+                id="loginTab"
+                class="auth-tab active"
+                onclick="showHospitalLogin()">
+
+                🔐 Login
+
+            </button>
+
+
+            <button
+                type="button"
+                id="registerTab"
+                class="auth-tab"
+                onclick="showHospitalRegister()">
+
+                📝 Register
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             LOGIN FORM
+        ================================================== -->
+
+        <form
+            id="hospitalLoginForm"
+            class="auth-form active"
+            method="POST"
+            action="{{ url_for('hospital_login') }}">
+
+            <div class="auth-group">
+
+                <label>
+                    📧 Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter hospital email"
+                    required>
+
+            </div>
+
+
+            <div class="auth-group">
+
+                <label>
+                    🔑 Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-submit">
+
+                🔐 Login
+
+            </button>
+
+        </form>
+
+
+        <!-- =================================================
+             REGISTER FORM
+        ================================================== -->
+
+        <form
+            id="hospitalRegisterForm"
+            class="auth-form"
+            method="POST"
+            action="{{ url_for('hospital_register') }}">
+
+            <div class="auth-group">
+
+                <label>
+                    🏥 Hospital Name
+                </label>
+
+                <input
+                    type="text"
+                    name="hospital_name"
+                    placeholder="Enter hospital name"
+                    required>
+
+            </div>
+
+
+            <div class="auth-group">
+
+                <label>
+                    📧 Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter hospital email"
+                    required>
+
+            </div>
+
+
+            <div class="auth-group">
+
+                <label>
+                    📞 Contact Number
+                </label>
+
+                <input
+                    type="tel"
+                    name="contact"
+                    placeholder="Enter contact number"
+                    maxlength="10"
+                    required>
+
+            </div>
+
+
+            <div class="auth-group">
+
+                <label>
+                    🔑 Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create password"
+                    required>
+
+            </div>
+
+
+            <div class="auth-group">
+
+                <label>
+                    🔑 Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm password"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-submit">
+
+                📝 Register Hospital
+
+            </button>
+
+        </form>
+
+
+        <!-- CLOSE -->
+
+        <button
+            type="button"
+            class="auth-close"
+            onclick="closeHospitalAuth()">
+
+            ❌ Close
+
+        </button>
+
+
+        <div class="auth-message">
+
+            Hospital staff can login and update bed availability.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026 RAHE -
+    Road Accident Hospital Emergency
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   CALL POPUP
+===================================================== */
+
+function showCallPopupFromButton(button) {
+
+    var hospitalName =
+        button.getAttribute("data-hospital-name");
+
+    var contactNumber =
+        button.getAttribute("data-contact");
+
+
+    document.getElementById("popupHospitalName").textContent =
+        hospitalName;
+
+
+    document.getElementById("popupNumber").textContent =
+        contactNumber;
+
+
+    document.getElementById("callNowButton").href =
+        "tel:" + contactNumber;
+
+
+    document.getElementById("callPopup").style.display =
+        "flex";
+
+}
+
+
+function closeCallPopup() {
+
+    document.getElementById("callPopup").style.display =
+        "none";
+
+    document.getElementById("callNowButton").href =
+        "#";
+
+}
+
+
+/* =====================================================
+   NO CONTACT POPUP
+===================================================== */
+
+function showNoContactPopup() {
+
+    document.getElementById("noContactPopup").style.display =
+        "flex";
+
+}
+
+
+function closeNoContactPopup() {
+
+    document.getElementById("noContactPopup").style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   HOSPITAL LOGIN / REGISTER POPUP
+===================================================== */
+
+function openHospitalAuth() {
+
+    document.getElementById("hospitalAuthPopup").style.display =
+        "flex";
+
+    showHospitalLogin();
+
+}
+
+
+function closeHospitalAuth() {
+
+    document.getElementById("hospitalAuthPopup").style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   SHOW LOGIN
+===================================================== */
+
+function showHospitalLogin() {
+
+    document.getElementById("hospitalLoginForm")
+        .classList.add("active");
+
+    document.getElementById("hospitalRegisterForm")
+        .classList.remove("active");
+
+
+    document.getElementById("loginTab")
+        .classList.add("active");
+
+    document.getElementById("registerTab")
+        .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   SHOW REGISTER
+===================================================== */
+
+function showHospitalRegister() {
+
+    document.getElementById("hospitalLoginForm")
+        .classList.remove("active");
+
+    document.getElementById("hospitalRegisterForm")
+        .classList.add("active");
+
+
+    document.getElementById("loginTab")
+        .classList.remove("active");
+
+    document.getElementById("registerTab")
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   OUTSIDE CLICK
+===================================================== */
+
+window.addEventListener("click", function(event) {
+
+    var callPopup =
+        document.getElementById("callPopup");
+
+    var noContactPopup =
+        document.getElementById("noContactPopup");
+
+    var hospitalAuthPopup =
+        document.getElementById("hospitalAuthPopup");
+
+
+    if (event.target === callPopup) {
+
+        closeCallPopup();
+
+    }
+
+
+    if (event.target === noContactPopup) {
+
+        closeNoContactPopup();
+
+    }
+
+
+    if (event.target === hospitalAuthPopup) {
+
+        closeHospitalAuth();
+
+    }
+
+});
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        closeCallPopup();
+
+        closeNoContactPopup();
+
+        closeHospitalAuth();
+
+    }
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f1f7ff, #fff3f8);
+            min-height: 100vh;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: linear-gradient(90deg, #008cff, #00a9df);
+            color: white;
+            padding: 18px 45px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: yellow;
+        }
+
+        .logout {
+            background: #ff304f;
+            padding: 9px 18px;
+            border-radius: 8px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 94%;
+            max-width: 1450px;
+            margin: 35px auto;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            color: #1457a6;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        /* STATISTICS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+
+            border-top: 5px solid #08a9e6;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.10);
+        }
+
+        .stat-icon {
+            font-size: 42px;
+        }
+
+        .stat-card h2 {
+            color: #1457a6;
+            margin: 10px 0;
+        }
+
+        .stat-number {
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        /* SECTION */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            color: #1457a6;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* SERVICES */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            min-height: 335px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.10);
+
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 23px;
+            color: #1457a6;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .service-btn {
+            display: block;
+            width: 100%;
+
+            text-align: center;
+            text-decoration: none;
+
+            background: #185bab;
+            color: white;
+
+            padding: 13px;
+            border-radius: 25px;
+
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .service-btn:hover {
+            background: #0d4282;
+        }
+
+        .emergency-btn {
+            background: #e90032;
+        }
+
+        .emergency-btn:hover {
+            background: #bd0029;
+        }
+
+        /* SECOND ROW */
+
+        .second-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            margin-top: 22px;
+        }
+
+        .accident-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            min-height: 300px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border-top: 5px solid #08a9e6;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.10);
+        }
+
+        .accident-icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .accident-card h3 {
+            text-align: center;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .accident-card p {
+            text-align: center;
+            color: #555;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .accident-btn {
+            display: block;
+
+            text-align: center;
+            text-decoration: none;
+
+            background: linear-gradient(
+                90deg,
+                #086cff,
+                #00a8df
+            );
+
+            color: white;
+
+            padding: 14px;
+            border-radius: 10px;
+
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .sos-card {
+            border-top-color: #ff304f;
+        }
+
+        .sos-btn {
+            background: linear-gradient(
+                90deg,
+                #ff1744,
+                #ff4d5c
+            );
+        }
+
+        /* CONTACT */
+
+        .contact-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0 40px;
+        }
+
+        .contact-card {
+            background: white;
+            width: 100%;
+            max-width: 700px;
+
+            border-radius: 20px;
+            padding: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.10);
+        }
+
+        .contact-icon {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .contact-card h3 {
+            color: #1457a6;
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .contact-card p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .contact-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .number-box {
+            background: #f3f8ff;
+            padding: 15px 25px;
+            border-radius: 12px;
+
+            font-size: 18px;
+            font-weight: bold;
+            color: #1457a6;
+        }
+
+        .number-box span {
+            color: #e90032;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #1457a6;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1100px) {
+
+            .services {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .second-row {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media(max-width:700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .second-row {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h1 {
+                font-size: 27px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            Home
+        </a>
+
+        <a href="/emergency-contact">
+            Emergency
+        </a>
+
+        <a href="/nearest">
+            Nearest
+        </a>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h1>
+            👋 Welcome, {{ session.get('email', 'User') }}
+        </h1>
+
+        <p>
+            Manage emergency hospital services and find available beds quickly.
+        </p>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏥
+            </div>
+
+            <h2>
+                Total Hospitals
+            </h2>
+
+            <div class="stat-number">
+                {{ total_hospitals }}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🚨
+            </div>
+
+            <h2>
+                Emergency Beds
+            </h2>
+
+            <div class="stat-number">
+                {{ emergency_beds }}
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🛏️
+            </div>
+
+            <h2>
+                ICU Beds
+            </h2>
+
+            <div class="stat-number">
+                {{ icu_beds }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SERVICES -->
+
+    <div class="section-title">
+
+        <h2>
+            Emergency Hospital Services
+        </h2>
+
+        <p>
+            Select a service to continue
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+
+        <!-- SEARCH HOSPITAL -->
+
+        <div class="service-card">
+
+            <div>
+
+                <div class="service-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Search Hospital
+                </h3>
+
+                <p>
+                    Search hospitals by district, city and bed type.
+                </p>
+
+            </div>
+
+            <a href="/hospital"
+               class="service-btn">
+
+                Search Hospital →
+
+            </a>
+
+        </div>
+
+
+        <!-- EMERGENCY BED -->
+
+        <div class="service-card">
+
+            <div>
+
+                <div class="service-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Emergency Bed Now
+                </h3>
+
+                <p>
+                    Quickly find hospitals having available emergency beds.
+                </p>
+
+            </div>
+
+            <a href="/emergency-bed-now"
+               class="service-btn emergency-btn">
+
+                Find Emergency Bed →
+
+            </a>
+
+        </div>
+
+
+        <!-- NEAREST -->
+
+        <div class="service-card">
+
+            <div>
+
+                <div class="service-icon">
+                    📍
+                </div>
+
+                <h3>
+                    Nearest Hospital
+                </h3>
+
+                <p>
+                    Find the nearest available emergency hospital.
+                </p>
+
+            </div>
+
+            <a href="/nearest"
+               class="service-btn">
+
+                Find Nearest →
+
+            </a>
+
+        </div>
+
+
+        <!-- HOSPITAL LOGIN -->
+
+        <div class="service-card">
+
+            <div>
+
+                <div class="service-icon">
+                    🏥
+                </div>
+
+                <h3>
+                    Hospital Login
+                </h3>
+
+                <p>
+                    Hospital staff can login and update bed availability.
+                </p>
+
+            </div>
+
+            <a href="/hospital-login"
+               class="service-btn">
+
+                Hospital Login →
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- SECOND ROW -->
+
+    <div class="second-row">
+
+
+        <!-- REPORT ACCIDENT -->
+
+        <div class="accident-card">
+
+            <div>
+
+                <div class="accident-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Report Accident
+                </h3>
+
+                <p>
+                    Submit accident details with image.
+                </p>
+
+            </div>
+
+            <a href="/report"
+               class="accident-btn">
+
+                Report Now
+
+            </a>
+
+        </div>
+
+
+        <!-- ACCIDENT HISTORY -->
+
+        <div class="accident-card">
+
+            <div>
+
+                <div class="accident-icon">
+                    📋
+                </div>
+
+                <h3>
+                    Accident History
+                </h3>
+
+                <p>
+                    View previous reports.
+                </p>
+
+            </div>
+
+            <a href="/history"
+               class="accident-btn">
+
+                View History
+
+            </a>
+
+        </div>
+
+
+        <!-- ADMIN -->
+
+        <div class="accident-card">
+
+            <div>
+
+                <div class="accident-icon">
+                    👨‍💼
+                </div>
+
+                <h3>
+                    Admin
+                </h3>
+
+                <p>
+                    Manage accident reports.
+                </p>
+
+            </div>
+
+            <a href="/admin"
+               class="accident-btn">
+
+                Open Admin
+
+            </a>
+
+        </div>
+
+
+        <!-- SOS -->
+
+        <div class="accident-card sos-card">
+
+            <div>
+
+                <div class="accident-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Emergency SOS
+                </h3>
+
+                <p>
+                    Share live location.
+                </p>
+
+            </div>
+
+            <a href="/sos"
+               class="accident-btn sos-btn">
+
+                🚨 Send SOS
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- EMERGENCY CONTACT -->
+
+    <div class="contact-wrapper">
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                📞
+            </div>
+
+            <h3>
+                Emergency Contact
+            </h3>
+
+            <p>
+                Quickly contact Ambulance, Police and Emergency services.
+            </p>
+
+
+            <div class="contact-numbers">
+
+                <div class="number-box">
+
+                    Ambulance :
+                    <span>108</span>
+
+                </div>
+
+
+                <div class="number-box">
+
+                    Police :
+                    <span>112</span>
+
+                </div>
+
+            </div>
+
+
+            <a href="/emergency-contact"
+               class="service-btn emergency-btn">
+
+                Emergency Contact →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 RAHE -
+    Road Accident Hospital Emergency
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE - Road Accident & Hospital Emergency</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf4ff,
+                    #fff1f6
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            padding: 45px 35px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+
+            font-size: 65px;
+
+            margin-bottom: 10px;
+        }
+
+
+        h1 {
+
+            color: #1457a6;
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        h2 {
+
+            color: #333;
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .description {
+
+            color: #666;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           BUTTON COLUMN
+        ========================= */
+
+        .buttons {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            width: 100%;
+        }
+
+
+        .btn {
+
+            display: block;
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+
+            color: white;
+        }
+
+
+        .register {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #086cff,
+                    #00a8df
+                );
+        }
+
+
+        .login {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #1457a6,
+                    #0878d1
+                );
+        }
+
+
+        .btn:hover {
+
+            transform: translateY(-2px);
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            margin-top: 25px;
+
+            color: #888;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            .container {
+
+                padding: 35px 22px;
+            }
+
+
+            .logo {
+
+                font-size: 55px;
+            }
+
+
+            h1 {
+
+                font-size: 34px;
+            }
+
+
+            h2 {
+
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             LOGO
+        ========================= -->
+
+        <div class="logo">
+            🚑
+        </div>
+
+
+        <!-- =========================
+             TITLE
+        ========================= -->
+
+        <h1>
+            RAHE
+        </h1>
+
+
+        <h2>
+            Road Accident & Hospital Emergency
+        </h2>
+
+
+        <!-- =========================
+             DESCRIPTION
+        ========================= -->
+
+        <p class="description">
+
+            Find emergency hospitals and
+            available beds quickly.
+
+        </p>
+
+
+        <!-- =========================
+             BUTTONS
+        ========================= -->
+
+        <div class="buttons">
+
+
+            <a
+                href="{{ url_for('register') }}"
+                class="btn register">
+
+                📝 Register
+
+            </a>
+
+
+            <a
+                href="{{ url_for('login') }}"
+                class="btn login">
+
+                🔐 Login
+
+            </a>
+
+
+        </div>
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <div class="footer">
+
+            Emergency Hospital Assistance System
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

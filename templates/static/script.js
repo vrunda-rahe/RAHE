@@ -1,0 +1,1 @@
+console.log("RAHE Emergency Hospital Bed Finder loaded.");

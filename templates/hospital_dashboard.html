@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Dashboard - RAHE</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef5ff, #fff1f5);
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            width: 100%;
+            background: white;
+            padding: 18px 50px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            color: #1454a4;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: white;
+            background: #1454a4;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            background: #0d3d7a;
+        }
+
+        .logout {
+            background: #dc3545 !important;
+        }
+
+        .logout:hover {
+            background: #b02a37 !important;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 50px auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ================= DASHBOARD CARD ================= */
+
+        .dashboard-card {
+            width: 100%;
+            max-width: 900px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+
+            text-align: center;
+        }
+
+        /* ================= HOSPITAL TITLE ================= */
+
+        .hospital-icon {
+            font-size: 65px;
+            margin-bottom: 10px;
+        }
+
+        .hospital-name {
+            color: #1454a4;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-title {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* ================= HOSPITAL INFO ================= */
+
+        .hospital-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+
+            margin-bottom: 35px;
+        }
+
+        .info-box {
+            background: #f4f8ff;
+            padding: 18px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e1eaff;
+        }
+
+        .info-box h3 {
+            color: #1454a4;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #444;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* ================= UPDATE SECTION ================= */
+
+        .update-title {
+            color: #1454a4;
+            font-size: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* ================= BED COLUMNS ================= */
+
+        .bed-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .bed-card {
+            padding: 25px 20px;
+
+            border-radius: 18px;
+
+            background: #f8fbff;
+
+            border: 2px solid #e5edfa;
+
+            transition: 0.3s;
+        }
+
+        .bed-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .bed-icon {
+            font-size: 40px;
+
+            margin-bottom: 10px;
+        }
+
+        .bed-card h3 {
+            color: #1454a4;
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        .bed-card input {
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccd8ea;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            text-align: center;
+
+            outline: none;
+        }
+
+        .bed-card input:focus {
+            border-color: #1454a4;
+
+            box-shadow:
+                0 0 0 3px rgba(20, 84, 164, 0.12);
+        }
+
+        /* ================= BED COLORS ================= */
+
+        .general-card {
+            border-top: 5px solid #1454a4;
+        }
+
+        .icu-card {
+            border-top: 5px solid #6f42c1;
+        }
+
+        .emergency-card {
+            border-top: 5px solid #dc3545;
+        }
+
+        .emergency-card h3 {
+            color: #dc3545;
+        }
+
+        /* ================= UPDATE BUTTON ================= */
+
+        .update-button {
+            width: 100%;
+
+            border: none;
+
+            background: #198754;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .update-button:hover {
+            background: #146c43;
+
+            transform: translateY(-2px);
+        }
+
+        /* ================= MESSAGE ================= */
+
+        .message {
+            margin-bottom: 20px;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            background: #e8f7ee;
+
+            color: #146c43;
+
+            font-weight: bold;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .header {
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .hospital-info {
+                grid-template-columns: 1fr;
+            }
+
+            .bed-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-card {
+                padding: 25px 18px;
+            }
+
+            .hospital-name {
+                font-size: 28px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .main-container {
+                width: 94%;
+
+                margin: 30px auto;
+            }
+
+            .nav {
+                width: 100%;
+
+                justify-content: center;
+            }
+
+            .nav a {
+                padding: 9px 14px;
+
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- HEADER -->
+<!-- ================================================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+
+    <div class="nav">
+
+        <a href="{{ url_for('hospital_dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('hospital_logout') }}"
+           class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================================================= -->
+<!-- MAIN -->
+<!-- ================================================= -->
+
+<main class="main-container">
+
+
+    <div class="dashboard-card">
+
+
+        <!-- ================================================= -->
+        <!-- HOSPITAL TITLE -->
+        <!-- ================================================= -->
+
+        <div class="hospital-icon">
+            🏥
+        </div>
+
+
+        <h1 class="hospital-name">
+
+            {{ hospital['hospital_name'] }}
+
+        </h1>
+
+
+        <p class="dashboard-title">
+
+            Hospital Bed Management Dashboard
+
+        </p>
+
+
+        <!-- ================================================= -->
+        <!-- HOSPITAL INFORMATION -->
+        <!-- ================================================= -->
+
+        <div class="hospital-info">
+
+
+            <div class="info-box">
+
+                <h3>
+                    📍 Address
+                </h3>
+
+                <p>
+
+                    {{ hospital['address'] or 'Not Available' }}
+
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    🏙️ City
+                </h3>
+
+                <p>
+
+                    {{ hospital['city'] or 'Not Available' }}
+
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>
+                    📞 Contact
+                </h3>
+
+                <p>
+
+                    {{ hospital['contact'] or 'Not Available' }}
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- UPDATE BED AVAILABILITY -->
+        <!-- ================================================= -->
+
+        <h2 class="update-title">
+
+            🛏️ Update Bed Availability
+
+        </h2>
+
+
+        <!-- ================================================= -->
+        <!-- FLASH MESSAGE -->
+        <!-- ================================================= -->
+
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- ================================================= -->
+        <!-- BED FORM -->
+        <!-- ================================================= -->
+
+        <form method="POST">
+
+
+            <div class="bed-grid">
+
+
+                <!-- ================= GENERAL ================= -->
+
+                <div class="bed-card general-card">
+
+                    <div class="bed-icon">
+                        🛏️
+                    </div>
+
+                    <h3>
+                        General Beds
+                    </h3>
+
+                    <input
+                        type="number"
+                        name="general_beds"
+                        min="0"
+                        value="{{ hospital['general_beds'] or 0 }}"
+                        required>
+
+                </div>
+
+
+                <!-- ================= ICU ================= -->
+
+                <div class="bed-card icu-card">
+
+                    <div class="bed-icon">
+                        🏥
+                    </div>
+
+                    <h3>
+                        ICU Beds
+                    </h3>
+
+                    <input
+                        type="number"
+                        name="icu_beds"
+                        min="0"
+                        value="{{ hospital['icu_beds'] or 0 }}"
+                        required>
+
+                </div>
+
+
+                <!-- ================= EMERGENCY ================= -->
+
+                <div class="bed-card emergency-card">
+
+                    <div class="bed-icon">
+                        🚨
+                    </div>
+
+                    <h3>
+                        Emergency Beds
+                    </h3>
+
+                    <input
+                        type="number"
+                        name="emergency_beds"
+                        min="0"
+                        value="{{ hospital['emergency_beds'] or 0 }}"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- UPDATE BUTTON -->
+            <!-- ================================================= -->
+
+            <button
+                type="submit"
+                class="update-button">
+
+                💾 Update Beds
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</main>
+
+
+</body>
+
+</html>

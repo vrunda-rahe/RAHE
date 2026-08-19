@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE - Hospital Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            background: linear-gradient(
+                135deg,
+                #eef7ff,
+                #fff4f8
+            );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo h1 {
+            color: #1457a6;
+            font-size: 34px;
+            margin-bottom: 6px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .hospital-icon {
+            text-align: center;
+            font-size: 55px;
+            margin-bottom: 8px;
+        }
+
+        .card h2 {
+            text-align: center;
+            color: #1457a6;
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           TOGGLE
+        ========================= */
+
+        .toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: #edf3fa;
+
+            padding: 5px;
+
+            border-radius: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .toggle button {
+            border: none;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: transparent;
+
+            color: #555;
+        }
+
+        .toggle button.active {
+            background: #086cff;
+            color: white;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #086cff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .main-button {
+            width: 100%;
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #086cff,
+                    #00a8df
+                );
+
+            color: white;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+        }
+
+        .main-button:hover {
+            opacity: 0.9;
+        }
+
+        /* =========================
+           FLASH MESSAGE
+        ========================= */
+
+        .message {
+            padding: 11px;
+
+            margin-bottom: 15px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            background: #fff0f0;
+
+            color: #d00000;
+        }
+
+        .message.success {
+            background: #eaf9ef;
+            color: #16833b;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back a {
+            color: #1457a6;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .back a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            .card {
+                padding: 22px;
+            }
+
+            .logo h1 {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =========================
+         RAHE LOGO
+    ========================= -->
+
+    <div class="logo">
+
+        <h1>
+            🚑 RAHE
+        </h1>
+
+        <p>
+            Road Accident Hospital Emergency
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN CARD
+    ========================= -->
+
+    <div class="card">
+
+
+        <!-- HOSPITAL ICON -->
+
+        <div class="hospital-icon">
+            🏥
+        </div>
+
+
+        <h2>
+            Hospital Portal
+        </h2>
+
+
+        <!-- =========================
+             LOGIN / REGISTER TOGGLE
+        ========================= -->
+
+        <div class="toggle">
+
+            <button
+                type="button"
+                id="loginTab"
+                class="active"
+                onclick="showLogin()">
+
+                🔐 Login
+
+            </button>
+
+
+            <button
+                type="button"
+                id="registerTab"
+                onclick="showRegister()">
+
+                📝 Register
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             FLASH MESSAGE
+        ========================= -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="message
+                        {% if category == 'success' %}
+                            success
+                        {% endif %}">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- =====================================================
+             LOGIN FORM
+        ====================================================== -->
+
+        <form
+            id="loginForm"
+            class="form active"
+            method="POST"
+            action="{{ url_for('hospital_login') }}">
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label>
+                    👤 Hospital Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter hospital username"
+                    required>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    🔒 Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required>
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="main-button">
+
+                🏥 Login
+
+            </button>
+
+
+        </form>
+
+
+        <!-- =====================================================
+             REGISTER FORM
+        ====================================================== -->
+
+        <form
+            id="registerForm"
+            class="form"
+            method="POST"
+            action="{{ url_for('hospital_register') }}">
+
+
+            <!-- HOSPITAL NAME -->
+
+            <div class="form-group">
+
+                <label>
+                    🏥 Hospital Name
+                </label>
+
+                <input
+                    type="text"
+                    name="hospital_name"
+                    placeholder="Enter hospital name"
+                    required>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label>
+                    📧 Hospital Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter hospital email"
+                    required>
+
+            </div>
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label>
+                    👤 Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Create username"
+                    required>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="form-group">
+
+                <label>
+                    📞 Contact Number
+                </label>
+
+                <input
+                    type="tel"
+                    name="contact"
+                    placeholder="Enter contact number"
+                    required>
+
+            </div>
+
+
+            <!-- DISTRICT -->
+
+            <div class="form-group">
+
+                <label>
+                    📍 District
+                </label>
+
+                <select
+                    name="district"
+                    required>
+
+                    <option value="">
+                        Select District
+                    </option>
+
+                    {% for d in districts %}
+
+                        <option value="{{ d }}">
+                            {{ d }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- CITY -->
+
+            <div class="form-group">
+
+                <label>
+                    🏙️ City
+                </label>
+
+                <input
+                    type="text"
+                    name="city"
+                    placeholder="Enter city"
+                    required>
+
+            </div>
+
+
+            <!-- VILLAGE -->
+
+            <div class="form-group">
+
+                <label>
+                    🏘️ Village
+                </label>
+
+                <input
+                    type="text"
+                    name="village"
+                    placeholder="Enter village">
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div class="form-group">
+
+                <label>
+                    📌 Address
+                </label>
+
+                <textarea
+                    name="address"
+                    placeholder="Enter hospital address"
+                    required></textarea>
+
+            </div>
+
+
+            <!-- LATITUDE -->
+
+            <div class="form-group">
+
+                <label>
+                    🌐 Latitude
+                </label>
+
+                <input
+                    type="text"
+                    name="latitude"
+                    placeholder="Example: 18.5204">
+
+            </div>
+
+
+            <!-- LONGITUDE -->
+
+            <div class="form-group">
+
+                <label>
+                    🌐 Longitude
+                </label>
+
+                <input
+                    type="text"
+                    name="longitude"
+                    placeholder="Example: 73.8567">
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    🔒 Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create password"
+                    required>
+
+            </div>
+
+
+            <!-- REGISTER BUTTON -->
+
+            <button
+                type="submit"
+                class="main-button">
+
+                🏥 Register Hospital
+
+            </button>
+
+
+        </form>
+
+
+        <!-- =========================
+             BACK TO DASHBOARD
+        ========================= -->
+
+        <div class="back">
+
+            <a href="{{ url_for('dashboard') }}">
+
+                ← Back to Dashboard
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    function showLogin() {
+
+        var loginForm =
+            document.getElementById("loginForm");
+
+        var registerForm =
+            document.getElementById("registerForm");
+
+        var loginTab =
+            document.getElementById("loginTab");
+
+        var registerTab =
+            document.getElementById("registerTab");
+
+
+        loginForm.classList.add("active");
+
+        registerForm.classList.remove("active");
+
+
+        loginTab.classList.add("active");
+
+        registerTab.classList.remove("active");
+
+    }
+
+
+    function showRegister() {
+
+        var loginForm =
+            document.getElementById("loginForm");
+
+        var registerForm =
+            document.getElementById("registerForm");
+
+        var loginTab =
+            document.getElementById("loginTab");
+
+        var registerTab =
+            document.getElementById("registerTab");
+
+
+        registerForm.classList.add("active");
+
+        loginForm.classList.remove("active");
+
+
+        registerTab.classList.add("active");
+
+        loginTab.classList.remove("active");
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

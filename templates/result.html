@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Hospital Results</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('hospital') }}">
+            Search
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="main-container">
+
+    <div class="page-header">
+
+        <h1>
+            🏥 Hospital Results
+        </h1>
+
+    </div>
+
+
+    <div class="hospital-grid">
+
+        {% for hospital in hospitals %}
+
+        <div class="hospital-card">
+
+            <h3>
+                {{ hospital["hospital_name"] }}
+            </h3>
+
+            <p>
+                📍 {{ hospital["address"] }}
+            </p>
+
+            <p>
+                📞 {{ hospital["contact"] }}
+            </p>
+
+            <p>
+                🚨 Emergency Beds:
+                <strong>
+                    {{ hospital["emergency_beds"] }}
+                </strong>
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE - Emergency Bed Now</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef7ff,
+                    #fff4f8
+                );
+
+            min-height: 100vh;
+
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #008cff,
+                    #00a9df
+                );
+
+            padding: 18px 45px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            color: white;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 16px;
+        }
+
+
+        .nav-links a:hover {
+
+            color: yellow;
+        }
+
+
+        .logout {
+
+            background: #ff304f;
+
+            padding: 9px 18px;
+
+            border-radius: 8px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            width: 94%;
+
+            max-width: 1200px;
+
+            margin: 35px auto;
+        }
+
+
+        .heading {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .heading h1 {
+
+            color: #e90032;
+
+            font-size: 34px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .heading p {
+
+            color: #666;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           LOCATION BOX
+        ========================= */
+
+        .location-box {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.10);
+
+            margin-bottom: 30px;
+
+            text-align: center;
+        }
+
+
+        .location-box h2 {
+
+            color: #1457a6;
+
+            margin-bottom: 10px;
+        }
+
+
+        .location-status {
+
+            color: #666;
+
+            margin-bottom: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        .location-btn {
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #086cff,
+                    #00a8df
+                );
+
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .location-btn:hover {
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           HOSPITAL GRID
+        ========================= */
+
+        .hospital-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .hospital-card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.10);
+
+            border-left:
+                5px solid #e90032;
+
+            transition: 0.3s;
+        }
+
+
+        .hospital-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .hospital-title {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hospital-title h2 {
+
+            color: #1457a6;
+
+            font-size: 23px;
+
+            line-height: 1.3;
+        }
+
+
+        .hospital-icon {
+
+            font-size: 40px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .hospital-info {
+
+            line-height: 1.9;
+
+            color: #555;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hospital-info strong {
+
+            color: #222;
+        }
+
+
+        /* =========================
+           LOCATION INFORMATION
+        ========================= */
+
+        .location-info {
+
+            margin-top: 15px;
+
+            background: #eef7ff;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            line-height: 1.9;
+        }
+
+
+        .location-info strong {
+
+            color: #222;
+        }
+
+
+        .distance {
+
+            color: #086cff;
+
+            font-weight: bold;
+
+            font-size: 17px;
+
+            margin-top: 5px;
+        }
+
+
+        .travel-time {
+
+            color: #e90032;
+
+            font-weight: bold;
+
+            font-size: 17px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           BEDS
+        ========================= */
+
+        .beds {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .bed-box {
+
+            background: #f3f8ff;
+
+            padding: 14px 8px;
+
+            text-align: center;
+
+            border-radius: 10px;
+        }
+
+
+        .bed-box strong {
+
+            display: block;
+
+            color: #1457a6;
+
+            font-size: 23px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .bed-box span {
+
+            font-size: 13px;
+
+            color: #555;
+        }
+
+
+        .emergency-bed {
+
+            background: #fff0f2;
+        }
+
+
+        .emergency-bed strong {
+
+            color: #e90032;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .hospital-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .btn {
+
+            flex: 1;
+
+            border: none;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+
+        .call-btn {
+
+            background: #159447;
+        }
+
+
+        .map-btn {
+
+            background: #086cff;
+        }
+
+
+        .call-btn:hover {
+
+            background: #0d7134;
+        }
+
+
+        .map-btn:hover {
+
+            background: #064fbd;
+        }
+
+
+        /* =========================
+           NO RESULT
+        ========================= */
+
+        .no-result {
+
+            background: white;
+
+            padding: 45px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.10);
+        }
+
+
+        .no-result-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .no-result h2 {
+
+            color: #1457a6;
+
+            margin-bottom: 10px;
+        }
+
+
+        .no-result p {
+
+            color: #666;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           POPUP
+        ========================= */
+
+        .popup-overlay {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 9999;
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background:
+                rgba(0, 0, 0, 0.65);
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .popup-box {
+
+            width: 380px;
+
+            max-width: 90%;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 50px
+                rgba(0, 0, 0, 0.35);
+
+            animation:
+                popupShow 0.25s ease;
+        }
+
+
+        @keyframes popupShow {
+
+            from {
+
+                transform:
+                    scale(0.7);
+
+                opacity: 0;
+            }
+
+            to {
+
+                transform:
+                    scale(1);
+
+                opacity: 1;
+            }
+        }
+
+
+        .popup-icon {
+
+            font-size: 60px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .popup-box h2 {
+
+            color: #1457a6;
+
+            margin-bottom: 12px;
+        }
+
+
+        .popup-hospital {
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #333;
+        }
+
+
+        .popup-number {
+
+            font-size: 26px;
+
+            font-weight: bold;
+
+            color: #159447;
+
+            margin: 15px 0;
+        }
+
+
+        .popup-close {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            background: #555;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .popup-close:hover {
+
+            background: #333;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-section {
+
+            text-align: center;
+
+            margin-top: 35px;
+        }
+
+
+        .back-button {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #1457a6;
+
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+
+        .back-button:hover {
+
+            background: #0d4282;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #1457a6;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 50px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hospital-grid {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 15px;
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .beds {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .hospital-buttons {
+
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Home
+        </a>
+
+
+        <a href="{{ url_for('hospital') }}">
+            Hospital
+        </a>
+
+
+        <a href="{{ url_for('emergency_contact') }}">
+            Emergency
+        </a>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="logout">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- HEADING -->
+
+    <div class="heading">
+
+        <h1>
+            🚨 Emergency Bed Now
+        </h1>
+
+        <p>
+            Hospitals having available emergency beds
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         LOCATION BOX
+    ================================================== -->
+
+    <div class="location-box">
+
+        <h2>
+            📍 Find Hospitals Near You
+        </h2>
+
+
+        <p id="locationStatus"
+           class="location-status">
+
+            Click the button to get your current location.
+
+        </p>
+
+
+        <button
+            type="button"
+            class="location-btn"
+            onclick="getMyLocation()">
+
+            📍 Use My Location
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         HOSPITALS
+    ================================================== -->
+
+    {% if hospitals %}
+
+        <div class="hospital-grid">
+
+
+            {% for hospital in hospitals %}
+
+
+                <div class="hospital-card"
+
+                     data-latitude="{{ hospital['latitude'] if hospital['latitude'] is not none else '' }}"
+
+                     data-longitude="{{ hospital['longitude'] if hospital['longitude'] is not none else '' }}"
+
+                     data-index="{{ loop.index }}">
+
+
+                    <!-- TITLE -->
+
+                    <div class="hospital-title">
+
+                        <h2>
+
+                            🏥
+                            {{ hospital["hospital_name"] }}
+
+                        </h2>
+
+
+                        <div class="hospital-icon">
+
+                            🚨
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- INFO -->
+
+                    <div class="hospital-info">
+
+
+                        <div>
+
+                            <strong>
+                                📍 Address:
+                            </strong>
+
+                            {{ hospital["address"] or "Not available" }}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                🏙️ City:
+                            </strong>
+
+                            {{ hospital["city"] or "Not available" }}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                📞 Contact:
+                            </strong>
+
+                            {{ hospital["contact"] or "Not available" }}
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         LOCATION INFORMATION
+                    ================================================== -->
+
+                    <div class="location-info">
+
+
+                        <div>
+
+                            <strong>
+                                📍 Hospital Location:
+                            </strong>
+
+
+                            {% if hospital["latitude"] is not none
+                                  and hospital["longitude"] is not none %}
+
+                                {{ hospital["latitude"] }},
+                                {{ hospital["longitude"] }}
+
+                            {% else %}
+
+                                Location not available
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div
+                            class="distance"
+                            id="distance-{{ loop.index }}">
+
+                            📏 Distance:
+                            Click "Use My Location"
+
+                        </div>
+
+
+                        <div
+                            class="travel-time"
+                            id="time-{{ loop.index }}">
+
+                            ⏱️ Travel Time:
+                            Click "Use My Location"
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         BEDS
+                    ================================================== -->
+
+                    <div class="beds">
+
+
+                        <div class="bed-box">
+
+                            <strong>
+
+                                {{ hospital["general_beds"] or 0 }}
+
+                            </strong>
+
+                            <span>
+                                General
+                            </span>
+
+                        </div>
+
+
+                        <div class="bed-box">
+
+                            <strong>
+
+                                {{ hospital["icu_beds"] or 0 }}
+
+                            </strong>
+
+                            <span>
+                                ICU
+                            </span>
+
+                        </div>
+
+
+                        <div class="bed-box emergency-bed">
+
+                            <strong>
+
+                                {{ hospital["emergency_beds"] or 0 }}
+
+                            </strong>
+
+                            <span>
+                                Emergency
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         BUTTONS
+                    ================================================== -->
+
+                    <div class="hospital-buttons">
+
+
+                        <!-- CALL BUTTON -->
+
+                        {% if hospital["contact"] %}
+
+                            <button
+                                type="button"
+                                class="btn call-btn"
+                                data-hospital-name="{{ hospital['hospital_name'] }}"
+                                data-contact="{{ hospital['contact'] }}"
+                                onclick="showCallPopupFromButton(this)">
+
+                                📞 Call Hospital
+
+                            </button>
+
+                        {% else %}
+
+                            <button
+                                type="button"
+                                class="btn call-btn"
+                                onclick="showNoContactPopup()">
+
+                                📞 Contact N/A
+
+                            </button>
+
+                        {% endif %}
+
+
+
+                        <!-- MAP BUTTON -->
+
+                        {% if hospital["latitude"] is not none
+                              and hospital["longitude"] is not none %}
+
+
+                            <a
+                                href="https://www.google.com/maps/dir/?api=1&destination={{ hospital['latitude'] }},{{ hospital['longitude'] }}"
+                                target="_blank"
+                                rel="noopener"
+                                class="btn map-btn">
+
+                                📍 Directions
+
+                            </a>
+
+
+                        {% else %}
+
+
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query={{ hospital['hospital_name'] | urlencode }}"
+                                target="_blank"
+                                rel="noopener"
+                                class="btn map-btn">
+
+                                📍 View Map
+
+                            </a>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- NO HOSPITAL -->
+
+        <div class="no-result">
+
+            <div class="no-result-icon">
+
+                🏥
+
+            </div>
+
+
+            <h2>
+
+                No Emergency Beds Available
+
+            </h2>
+
+
+            <p>
+
+                Currently no hospitals have
+                available emergency beds.
+
+            </p>
+
+        </div>
+
+
+    {% endif %}
+
+
+
+    <!-- BACK BUTTON -->
+
+    <div class="back-section">
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-button">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     CALL POPUP
+===================================================== -->
+
+<div
+    id="callPopup"
+    class="popup-overlay">
+
+
+    <div class="popup-box">
+
+
+        <div class="popup-icon">
+
+            📞
+
+        </div>
+
+
+        <h2>
+
+            Hospital Contact
+
+        </h2>
+
+
+        <div
+            id="popupHospitalName"
+            class="popup-hospital">
+
+            Hospital
+
+        </div>
+
+
+        <div
+            id="popupNumber"
+            class="popup-number">
+
+            0000000000
+
+        </div>
+
+
+        <p>
+
+            Hospital emergency contact number
+
+        </p>
+
+
+        <br>
+
+
+        <button
+            type="button"
+            class="popup-close"
+            onclick="closeCallPopup()">
+
+            ✖ Close
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NO CONTACT POPUP
+===================================================== -->
+
+<div
+    id="noContactPopup"
+    class="popup-overlay">
+
+
+    <div class="popup-box">
+
+
+        <div class="popup-icon">
+
+            ⚠️
+
+        </div>
+
+
+        <h2>
+
+            Contact Not Available
+
+        </h2>
+
+
+        <p>
+
+            This hospital does not have
+            a contact number.
+
+        </p>
+
+
+        <br>
+
+
+        <button
+            type="button"
+            class="popup-close"
+            onclick="closeNoContactPopup()">
+
+            ✖ Close
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026 RAHE -
+    Road Accident Hospital Emergency
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   CALCULATE DISTANCE
+===================================================== */
+
+function calculateDistance(
+    lat1,
+    lon1,
+    lat2,
+    lon2
+) {
+
+    var earthRadius = 6371;
+
+
+    var dLat =
+        (lat2 - lat1) *
+        Math.PI / 180;
+
+
+    var dLon =
+        (lon2 - lon1) *
+        Math.PI / 180;
+
+
+    var a =
+        Math.sin(dLat / 2) *
+        Math.sin(dLat / 2)
+        +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+
+
+    var c =
+        2 *
+        Math.atan2(
+            Math.sqrt(a),
+            Math.sqrt(1 - a)
+        );
+
+
+    return earthRadius * c;
+
+}
+
+
+
+/* =====================================================
+   CALCULATE TRAVEL TIME
+===================================================== */
+
+function calculateTravelTime(distance) {
+
+    /*
+       Approximate city driving speed.
+       This is an estimate, not live traffic.
+    */
+
+    var averageSpeed = 30;
+
+
+    var hours =
+        distance / averageSpeed;
+
+
+    var minutes =
+        Math.round(hours * 60);
+
+
+    if (minutes < 1) {
+
+        minutes = 1;
+
+    }
+
+
+    if (minutes < 60) {
+
+        return minutes + " minutes";
+
+    }
+
+
+    var hoursPart =
+        Math.floor(minutes / 60);
+
+
+    var minutesPart =
+        minutes % 60;
+
+
+    if (minutesPart === 0) {
+
+        return hoursPart + " hour";
+
+    }
+
+
+    return (
+        hoursPart +
+        " hour " +
+        minutesPart +
+        " minutes"
+    );
+
+}
+
+
+
+/* =====================================================
+   UPDATE ALL HOSPITAL DISTANCES
+===================================================== */
+
+function updateHospitalDistances(
+    userLatitude,
+    userLongitude
+) {
+
+
+    var cards =
+        document.querySelectorAll(
+            ".hospital-card"
+        );
+
+
+    cards.forEach(
+        function(card) {
+
+
+            var index =
+                card.getAttribute(
+                    "data-index"
+                );
+
+
+            var latitudeValue =
+                card.getAttribute(
+                    "data-latitude"
+                );
+
+
+            var longitudeValue =
+                card.getAttribute(
+                    "data-longitude"
+                );
+
+
+            var distanceElement =
+                document.getElementById(
+                    "distance-" + index
+                );
+
+
+            var timeElement =
+                document.getElementById(
+                    "time-" + index
+                );
+
+
+            if (
+                latitudeValue === "" ||
+                longitudeValue === "" ||
+                latitudeValue === null ||
+                longitudeValue === null
+            ) {
+
+
+                distanceElement.textContent =
+                    "📏 Distance: Location unavailable";
+
+
+                timeElement.textContent =
+                    "⏱️ Travel Time: Not available";
+
+
+                return;
+
+            }
+
+
+            var hospitalLatitude =
+                parseFloat(
+                    latitudeValue
+                );
+
+
+            var hospitalLongitude =
+                parseFloat(
+                    longitudeValue
+                );
+
+
+            if (
+                isNaN(hospitalLatitude) ||
+                isNaN(hospitalLongitude)
+            ) {
+
+
+                distanceElement.textContent =
+                    "📏 Distance: Location unavailable";
+
+
+                timeElement.textContent =
+                    "⏱️ Travel Time: Not available";
+
+
+                return;
+
+            }
+
+
+            var distance =
+                calculateDistance(
+                    userLatitude,
+                    userLongitude,
+                    hospitalLatitude,
+                    hospitalLongitude
+                );
+
+
+            distanceElement.textContent =
+                "📏 Distance: " +
+                distance.toFixed(2) +
+                " km";
+
+
+            timeElement.textContent =
+                "⏱️ Estimated Travel Time: " +
+                calculateTravelTime(distance);
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   GET USER LOCATION
+===================================================== */
+
+function getMyLocation() {
+
+
+    var status =
+        document.getElementById(
+            "locationStatus"
+        );
+
+
+    if (
+        !navigator.geolocation
+    ) {
+
+
+        status.textContent =
+            "❌ Geolocation is not supported by your browser.";
+
+
+        return;
+
+    }
+
+
+    status.textContent =
+        "⏳ Getting your current location...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+
+            var latitude =
+                position.coords.latitude;
+
+
+            var longitude =
+                position.coords.longitude;
+
+
+            status.textContent =
+                "✅ Your location found: " +
+                latitude.toFixed(5) +
+                ", " +
+                longitude.toFixed(5);
+
+
+            updateHospitalDistances(
+                latitude,
+                longitude
+            );
+
+        },
+
+
+        function(error) {
+
+
+            if (error.code === 1) {
+
+                status.textContent =
+                    "❌ Location permission denied. Please allow location access.";
+
+            }
+
+            else if (error.code === 2) {
+
+                status.textContent =
+                    "❌ Location unavailable.";
+
+            }
+
+            else if (error.code === 3) {
+
+                status.textContent =
+                    "❌ Location request timed out.";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "❌ Unable to get your location.";
+
+            }
+
+        },
+
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   CALL POPUP
+===================================================== */
+
+function showCallPopupFromButton(button) {
+
+
+    var hospitalName =
+        button.getAttribute(
+            "data-hospital-name"
+        );
+
+
+    var contactNumber =
+        button.getAttribute(
+            "data-contact"
+        );
+
+
+    document.getElementById(
+        "popupHospitalName"
+    ).textContent =
+        hospitalName;
+
+
+    document.getElementById(
+        "popupNumber"
+    ).textContent =
+        contactNumber;
+
+
+    document.getElementById(
+        "callPopup"
+    ).style.display =
+        "flex";
+
+}
+
+
+
+/* =====================================================
+   CLOSE CALL POPUP
+===================================================== */
+
+function closeCallPopup() {
+
+
+    document.getElementById(
+        "callPopup"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   NO CONTACT POPUP
+===================================================== */
+
+function showNoContactPopup() {
+
+
+    document.getElementById(
+        "noContactPopup"
+    ).style.display =
+        "flex";
+
+}
+
+
+
+/* =====================================================
+   CLOSE NO CONTACT POPUP
+===================================================== */
+
+function closeNoContactPopup() {
+
+
+    document.getElementById(
+        "noContactPopup"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   CLOSE POPUP WHEN CLICKING OUTSIDE
+===================================================== */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+
+        var callPopup =
+            document.getElementById(
+                "callPopup"
+            );
+
+
+        var noContactPopup =
+            document.getElementById(
+                "noContactPopup"
+            );
+
+
+        if (
+            event.target === callPopup
+        ) {
+
+            callPopup.style.display =
+                "none";
+
+        }
+
+
+        if (
+            event.target === noContactPopup
+        ) {
+
+            noContactPopup.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   ESC KEY CLOSE POPUP
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key === "Escape"
+        ) {
+
+
+            closeCallPopup();
+
+
+            closeNoContactPopup();
+
+        }
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

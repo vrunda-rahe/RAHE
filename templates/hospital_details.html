@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Hospital Details</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('hospital') }}">
+            Search
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="details-box">
+
+    <div class="details-icon">
+        🏥
+    </div>
+
+    <h1>
+        {{ hospital["hospital_name"] }}
+    </h1>
+
+    <p>
+        📍 {{ hospital["address"] }}
+    </p>
+
+    <p>
+        🏙️ {{ hospital["city"] }}
+    </p>
+
+    <p>
+        📌 {{ hospital["district"] }}
+    </p>
+
+    <p>
+        📞 {{ hospital["contact"] }}
+    </p>
+
+
+    <div class="beds-grid">
+
+        <div class="bed general">
+
+            <span>General</span>
+
+            <strong>
+                {{ hospital["general_beds"] }}
+            </strong>
+
+            <small>Beds</small>
+
+        </div>
+
+
+        <div class="bed icu">
+
+            <span>ICU</span>
+
+            <strong>
+                {{ hospital["icu_beds"] }}
+            </strong>
+
+            <small>Beds</small>
+
+        </div>
+
+
+        <div class="bed emergency">
+
+            <span>Emergency</span>
+
+            <strong>
+                {{ hospital["emergency_beds"] }}
+            </strong>
+
+            <small>Beds</small>
+
+        </div>
+
+    </div>
+
+
+    <div class="card-buttons">
+
+        <a
+            href="tel:{{ hospital['contact'] }}"
+            class="call-btn">
+
+            📞 Call Hospital
+
+        </a>
+
+
+        <a
+            href="https://www.google.com/maps/search/?api=1&query={{ hospital['latitude'] }},{{ hospital['longitude'] }}"
+            target="_blank"
+            class="location-btn">
+
+            📍 View Location
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

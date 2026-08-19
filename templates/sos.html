@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE - SOS Emergency</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe0e0, #fff5f5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 55px;
+        }
+
+        h1 {
+            color: #d00000;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* SOS BUTTON */
+
+        .sos-button {
+            width: 170px;
+            height: 170px;
+
+            border-radius: 50%;
+
+            border: 8px solid #ffcccc;
+
+            background: #e00000;
+
+            color: white;
+
+            font-size: 35px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+            transition: 0.2s;
+        }
+
+        .sos-button:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* ===================================
+           POPUP
+        =================================== */
+
+        #popup {
+
+            display: none;
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0,0,0,0.7);
+
+            z-index: 99999;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .popup-box {
+
+            width: 90%;
+            max-width: 450px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+
+            animation: showPopup 0.3s ease;
+        }
+
+
+        @keyframes showPopup {
+
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+
+        .popup-icon {
+            font-size: 60px;
+        }
+
+
+        .popup-box h2 {
+            color: #d00000;
+            margin: 10px 0;
+        }
+
+
+        .location {
+
+            background: #f1f1f1;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            margin: 20px 0;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        .close-button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            background: #d00000;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            cursor: pointer;
+        }
+
+
+        .close-button:hover {
+            background: #a80000;
+        }
+
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 12px 25px;
+
+            background: #333;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+    <div class="logo">
+        🚨
+    </div>
+
+    <h1>
+        SOS Emergency
+    </h1>
+
+    <p class="info">
+        Press the SOS button in case of emergency.
+    </p>
+
+
+    <!-- ===================================
+         SOS BUTTON
+    =================================== -->
+
+    <button
+        type="button"
+        class="sos-button"
+        id="sosButton">
+
+        SOS
+
+    </button>
+
+
+    <br>
+
+
+    <a
+        href="{{ url_for('dashboard') }}"
+        class="back">
+
+        ← Back to Dashboard
+
+    </a>
+
+</div>
+
+
+
+<!-- ===================================
+     POPUP
+=================================== -->
+
+<div id="popup">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+            🚨
+        </div>
+
+        <h2>
+            SOS Sent Successfully!
+        </h2>
+
+        <p>
+            Emergency request has been recorded.
+        </p>
+
+
+        <div
+            class="location"
+            id="location">
+
+            📍 Getting your location...
+
+        </div>
+
+
+        <button
+            type="button"
+            class="close-button"
+            id="closeButton">
+
+            OK
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    // ==========================================
+    // GET ELEMENTS
+    // ==========================================
+
+    const sosButton =
+        document.getElementById("sosButton");
+
+    const popup =
+        document.getElementById("popup");
+
+    const closeButton =
+        document.getElementById("closeButton");
+
+    const locationBox =
+        document.getElementById("location");
+
+
+    // ==========================================
+    // SOS BUTTON CLICK
+    // ==========================================
+
+    sosButton.addEventListener(
+        "click",
+        function () {
+
+            // SHOW POPUP
+            popup.style.display = "flex";
+
+
+            // SHOW LOADING
+            locationBox.innerHTML =
+                "📍 Getting your location...";
+
+
+            // GET LOCATION
+
+            if (
+                navigator.geolocation
+            ) {
+
+                navigator.geolocation.getCurrentPosition(
+
+                    function (position) {
+
+                        const lat =
+                            position.coords.latitude;
+
+                        const lon =
+                            position.coords.longitude;
+
+
+                        locationBox.innerHTML =
+                            "📍 <b>Your Location</b><br><br>" +
+                            "Latitude: " + lat +
+                            "<br>" +
+                            "Longitude: " + lon;
+
+                    },
+
+                    function () {
+
+                        locationBox.innerHTML =
+                            "📍 Location permission denied.<br><br>" +
+                            "SOS request is still active.";
+
+                    }
+
+                );
+
+            }
+
+            else {
+
+                locationBox.innerHTML =
+                    "📍 Location is not supported by this browser.";
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // CLOSE POPUP
+    // ==========================================
+
+    closeButton.addEventListener(
+        "click",
+        function () {
+
+            popup.style.display = "none";
+
+        }
+    );
+
+
+    // ==========================================
+    // CLICK OUTSIDE POPUP
+    // ==========================================
+
+    popup.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === popup
+            ) {
+
+                popup.style.display = "none";
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Search</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        🚑 RAHE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('hospital') }}">
+            Hospital Search
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="main-container">
+
+    <div class="search-box">
+
+        <h2>
+            🔍 Search Hospital
+        </h2>
+
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="city"
+                value="{{ city }}"
+                placeholder="Enter city">
+
+            <button type="submit"
+                    class="search-btn">
+
+                Search
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="hospital-grid">
+
+        {% for hospital in hospitals %}
+
+        <div class="hospital-card">
+
+            <h3>
+                🏥 {{ hospital["hospital_name"] }}
+            </h3>
+
+            <p>
+                📍 {{ hospital["address"] }}
+            </p>
+
+            <p>
+                🏙️ {{ hospital["city"] }}
+            </p>
+
+            <p>
+                🚨 Emergency:
+                {{ hospital["emergency_beds"] }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

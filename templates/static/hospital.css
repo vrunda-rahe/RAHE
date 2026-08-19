@@ -1,0 +1,796 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fdf2f8,
+            #eef4ff
+        );
+
+    min-height: 100vh;
+
+    color: #24324a;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+
+    height: 70px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 55px;
+
+    box-shadow:
+        0 3px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.logo {
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: #1757aa;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 30px;
+
+}
+
+
+.nav-links a {
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+
+.nav-links a:hover {
+
+    color: #2166d1;
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.main-container {
+
+    width: 92%;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 35px 0 50px;
+
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+
+    text-align: center;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+}
+
+
+.page-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.page-header h1 {
+
+    color: #1554a4;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.page-header p {
+
+    color: #666;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+
+.search-box {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+    margin-bottom: 35px;
+
+}
+
+
+.search-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.search-icon {
+
+    font-size: 35px;
+
+}
+
+
+.search-title h2 {
+
+    color: #1554a4;
+
+    margin-bottom: 5px;
+
+}
+
+
+.search-title p {
+
+    color: #777;
+
+}
+
+
+/* =========================================
+   FORM ROW
+========================================= */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.form-group label {
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+
+    color: #333;
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d5dbe5;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    background: white;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #2867d8;
+
+    box-shadow:
+        0 0 0 3px rgba(40,103,216,0.1);
+
+}
+
+
+/* =========================================
+   BUTTON ROW
+========================================= */
+
+.button-row {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+}
+
+
+.search-btn {
+
+    border: none;
+
+    background: #2867df;
+
+    color: white;
+
+    padding: 13px 25px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+
+.search-btn:hover {
+
+    background: #174fae;
+
+}
+
+
+.clear-btn {
+
+    text-decoration: none;
+
+    background: #eeeeee;
+
+    color: #333;
+
+    padding: 13px 25px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.clear-btn:hover {
+
+    background: #dddddd;
+
+}
+
+
+/* =========================================
+   RESULTS
+========================================= */
+
+.results-section {
+
+    margin-top: 20px;
+
+}
+
+
+.results-heading {
+
+    margin-bottom: 20px;
+
+}
+
+
+.results-heading h2 {
+
+    color: #1554a4;
+
+    font-size: 25px;
+
+}
+
+
+.results-heading p {
+
+    color: #777;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================================
+   HOSPITAL GRID - 3 COLUMNS
+========================================= */
+
+.hospital-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    width: 100%;
+
+}
+
+
+/* =========================================
+   HOSPITAL CARD
+========================================= */
+
+.hospital-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.10);
+
+    transition: 0.3s;
+
+}
+
+
+.hospital-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.15);
+
+}
+
+
+/* =========================================
+   HOSPITAL TOP
+========================================= */
+
+.hospital-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.hospital-icon {
+
+    font-size: 38px;
+
+}
+
+
+.hospital-top h3 {
+
+    color: #1554a4;
+
+    font-size: 20px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.location {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   INFO
+========================================= */
+
+.info-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.info-row span {
+
+    color: #666;
+
+}
+
+
+.info-row strong {
+
+    color: #333;
+
+    text-align: right;
+
+}
+
+
+/* =========================================
+   BEDS
+========================================= */
+
+.beds-title {
+
+    margin-top: 20px;
+
+    margin-bottom: 12px;
+
+    font-weight: bold;
+
+    color: #333;
+
+}
+
+
+.beds-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+}
+
+
+.bed {
+
+    text-align: center;
+
+    padding: 12px 5px;
+
+    border-radius: 10px;
+
+}
+
+
+.bed span {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+.bed strong {
+
+    display: block;
+
+    font-size: 24px;
+
+    margin-top: 4px;
+
+}
+
+
+.bed small {
+
+    font-size: 11px;
+
+}
+
+
+.bed.general {
+
+    background: #eef7ff;
+
+}
+
+
+.bed.icu {
+
+    background: #f4efff;
+
+}
+
+
+.bed.emergency {
+
+    background: #fff0f0;
+
+}
+
+
+/* =========================================
+   CARD BUTTONS
+========================================= */
+
+.card-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+.call-btn,
+.location-btn {
+
+    flex: 1;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    padding: 11px 8px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+.call-btn {
+
+    background: #2876e8;
+
+    color: white;
+
+}
+
+
+.location-btn {
+
+    background: #eeeeee;
+
+    color: #333;
+
+}
+
+
+.call-btn:hover {
+
+    background: #1554a4;
+
+}
+
+
+.location-btn:hover {
+
+    background: #dddddd;
+
+}
+
+
+/* =========================================
+   NO RESULT
+========================================= */
+
+.no-result {
+
+    background: white;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+}
+
+
+.no-result-icon {
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.no-result h2 {
+
+    color: #1554a4;
+
+    margin-bottom: 10px;
+
+}
+
+
+.no-result p {
+
+    color: #777;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .hospital-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .form-row {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .navbar {
+
+        padding: 0 20px;
+
+    }
+
+    .nav-links {
+
+        gap: 10px;
+
+    }
+
+    .main-container {
+
+        width: 94%;
+
+    }
+
+    .hospital-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .form-row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .card-buttons {
+
+        flex-direction: column;
+
+    }
+
+}
