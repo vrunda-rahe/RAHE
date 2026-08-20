@@ -29,7 +29,6 @@
             background: #111827;
             color: white;
             padding: 15px 30px;
-
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -80,31 +79,29 @@
 
         .stats {
             display: grid;
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .stat-card {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             text-align: center;
 
             box-shadow:
-                0 4px 15px rgba(0,0,0,0.08);
+                0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .stat-icon {
-            font-size: 35px;
-            margin-bottom: 10px;
+            font-size: 32px;
+            margin-bottom: 8px;
         }
 
         .stat-card h2 {
             margin: 5px 0;
-            font-size: 30px;
+            font-size: 28px;
         }
 
         .stat-card p {
@@ -118,7 +115,6 @@
             background: white;
             padding: 20px;
             border-radius: 12px 12px 0 0;
-
             border-bottom: 1px solid #ddd;
         }
 
@@ -130,18 +126,16 @@
             background: white;
             padding: 22px;
             margin-bottom: 15px;
-
             border-radius: 10px;
 
             box-shadow:
-                0 3px 12px rgba(0,0,0,0.06);
+                0 3px 12px rgba(0, 0, 0, 0.06);
         }
 
         .report-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-
             margin-bottom: 15px;
         }
 
@@ -152,15 +146,14 @@
         .report-id {
             color: #777;
             font-size: 13px;
+            margin-top: 5px;
         }
 
         /* ================= DETAILS ================= */
 
         .details {
             display: grid;
-            grid-template-columns:
-                repeat(2, 1fr);
-
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
         }
 
@@ -201,12 +194,16 @@
             color: #0f5132;
         }
 
+        .rejected {
+            background: #f8d7da;
+            color: #842029;
+        }
+
         /* ================= UPDATE ================= */
 
         .update-box {
             margin-top: 18px;
             padding-top: 15px;
-
             border-top: 1px solid #eee;
         }
 
@@ -228,10 +225,8 @@
             padding: 10px 18px;
             border: none;
             border-radius: 7px;
-
             background: #dc2626;
             color: white;
-
             cursor: pointer;
             font-weight: bold;
         }
@@ -263,7 +258,6 @@
         .image-box img {
             max-width: 250px;
             max-height: 180px;
-
             border-radius: 8px;
             border: 1px solid #ddd;
         }
@@ -277,7 +271,7 @@
             border-radius: 12px;
 
             box-shadow:
-                0 4px 15px rgba(0,0,0,0.08);
+                0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .empty-icon {
@@ -288,7 +282,64 @@
             color: #666;
         }
 
+        /* ================= HOSPITALS ================= */
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .hospital-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .hospital-card h3 {
+            margin-top: 0;
+            color: #1d4ed8;
+        }
+
+        .hospital-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .hospital-detail {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        /* ================= USERS ================= */
+
+        .user-card {
+            background: white;
+            padding: 18px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-card strong {
+            color: #374151;
+        }
+
         /* ================= MOBILE ================= */
+
+        @media(max-width: 900px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
 
         @media(max-width: 750px) {
 
@@ -297,11 +348,20 @@
                 gap: 12px;
             }
 
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             .stats {
                 grid-template-columns: 1fr;
             }
 
             .details {
+                grid-template-columns: 1fr;
+            }
+
+            .hospital-details {
                 grid-template-columns: 1fr;
             }
 
@@ -326,20 +386,16 @@
 <div class="navbar">
 
     <div class="logo">
-        🚑 RAHE
+        🚑 RAHE Admin
     </div>
 
     <div class="nav-links">
 
-        <a href="{{ url_for('dashboard') }}">
+        <a href="{{ url_for('admin_dashboard') }}">
             Dashboard
         </a>
 
-        <a href="{{ url_for('history') }}">
-            History
-        </a>
-
-        <a href="{{ url_for('logout') }}">
+        <a href="{{ url_for('admin_logout') }}">
             Logout
         </a>
 
@@ -360,7 +416,7 @@
         </h1>
 
         <p>
-            Manage and monitor accident reports
+            Manage and monitor RAHE Emergency Hospital Bed Finder
         </p>
 
     </div>
@@ -371,6 +427,8 @@
     <div class="stats">
 
 
+        <!-- TOTAL ACCIDENTS -->
+
         <div class="stat-card">
 
             <div class="stat-icon">
@@ -378,7 +436,7 @@
             </div>
 
             <h2>
-                {{ total }}
+                {{ total_accidents }}
             </h2>
 
             <p>
@@ -388,6 +446,8 @@
         </div>
 
 
+        <!-- PENDING -->
+
         <div class="stat-card">
 
             <div class="stat-icon">
@@ -395,7 +455,7 @@
             </div>
 
             <h2>
-                {{ pending }}
+                {{ pending_accidents }}
             </h2>
 
             <p>
@@ -405,6 +465,8 @@
         </div>
 
 
+        <!-- RESOLVED -->
+
         <div class="stat-card">
 
             <div class="stat-icon">
@@ -412,11 +474,49 @@
             </div>
 
             <h2>
-                {{ completed }}
+                {{ resolved_accidents }}
             </h2>
 
             <p>
-                Completed Reports
+                Resolved Reports
+            </p>
+
+        </div>
+
+
+        <!-- HOSPITALS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏥
+            </div>
+
+            <h2>
+                {{ total_hospitals }}
+            </h2>
+
+            <p>
+                Total Hospitals
+            </p>
+
+        </div>
+
+
+        <!-- USERS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <h2>
+                {{ total_users }}
+            </h2>
+
+            <p>
+                Registered Users
             </p>
 
         </div>
@@ -425,7 +525,9 @@
     </div>
 
 
-    <!-- ================= REPORTS ================= -->
+    <!-- ================================================= -->
+    <!-- ACCIDENT REPORTS -->
+    <!-- ================================================= -->
 
     <div class="reports-title">
 
@@ -445,14 +547,17 @@
         <div class="report-card">
 
 
-            <!-- HEADER -->
+            <!-- ================= HEADER ================= -->
 
             <div class="report-header">
 
                 <div>
 
                     <h3>
-                        🚨 {{ accident["name"] or "Unknown Person" }}
+
+                        🚨
+                        {{ accident["name"] or "Unknown Person" }}
+
                     </h3>
 
                     <div class="report-id">
@@ -465,21 +570,31 @@
                 </div>
 
 
-                <!-- STATUS -->
+                <!-- ================= STATUS ================= -->
 
                 <div>
 
-                    {% if accident["status"] == "Completed" %}
+
+                    {% if accident["status"] == "Resolved" %}
 
                         <span class="status completed">
-                            Completed
+                            Resolved
                         </span>
 
-                    {% elif accident["status"] == "In Process" %}
+
+                    {% elif accident["status"] == "In Progress" %}
 
                         <span class="status process">
-                            In Process
+                            In Progress
                         </span>
+
+
+                    {% elif accident["status"] == "Rejected" %}
+
+                        <span class="status rejected">
+                            Rejected
+                        </span>
+
 
                     {% else %}
 
@@ -489,8 +604,8 @@
 
                     {% endif %}
 
-                </div>
 
+                </div>
 
             </div>
 
@@ -585,7 +700,8 @@
                     📷 Accident Image
                 </strong>
 
-                <br><br>
+                <br>
+                <br>
 
                 <img
                     src="{{ url_for(
@@ -607,15 +723,18 @@
                 <form
                     method="POST"
                     action="{{ url_for(
-                        'update_accident',
+                        'update_accident_status',
                         accident_id=accident['id']
                     ) }}"
                 >
 
+
                     <label>
+
                         <strong>
                             Update Status:
                         </strong>
+
                     </label>
 
 
@@ -624,31 +743,53 @@
 
                         <option
                             value="Pending"
+
                             {% if accident["status"] == "Pending" %}
-                            selected
+                                selected
                             {% endif %}
                         >
+
                             Pending
+
                         </option>
 
 
                         <option
-                            value="In Process"
-                            {% if accident["status"] == "In Process" %}
-                            selected
+                            value="In Progress"
+
+                            {% if accident["status"] == "In Progress" %}
+                                selected
                             {% endif %}
                         >
-                            In Process
+
+                            In Progress
+
                         </option>
 
 
                         <option
-                            value="Completed"
-                            {% if accident["status"] == "Completed" %}
-                            selected
+                            value="Resolved"
+
+                            {% if accident["status"] == "Resolved" %}
+                                selected
                             {% endif %}
                         >
-                            Completed
+
+                            Resolved
+
+                        </option>
+
+
+                        <option
+                            value="Rejected"
+
+                            {% if accident["status"] == "Rejected" %}
+                                selected
+                            {% endif %}
+                        >
+
+                            Rejected
+
                         </option>
 
 
@@ -656,7 +797,45 @@
 
 
                     <button type="submit">
+
                         💾 Update Status
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- ================= DELETE ================= -->
+
+            <div
+                style="
+                    margin-top:15px;
+                    padding-top:15px;
+                    border-top:1px solid #eee;
+                "
+            >
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'delete_accident',
+                        accident_id=accident['id']
+                    ) }}"
+                    onsubmit="return confirm(
+                        'Are you sure you want to delete this accident report?'
+                    );"
+                >
+
+                    <button
+                        type="submit"
+                        style="background:#991b1b;"
+                    >
+
+                        🗑️ Delete Report
+
                     </button>
 
                 </form>
@@ -691,6 +870,224 @@
 
 
     {% endif %}
+
+
+
+    <!-- ================================================= -->
+    <!-- REGISTERED HOSPITALS -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <div class="reports-title">
+
+            <h2>
+                🏥 Registered Hospitals
+            </h2>
+
+        </div>
+
+
+        {% if hospitals %}
+
+
+            {% for hospital in hospitals %}
+
+
+            <div class="hospital-card">
+
+                <h3>
+                    🏥 {{ hospital["hospital_name"] }}
+                </h3>
+
+
+                <div class="hospital-details">
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            📍 Address
+                        </strong>
+
+                        {{ hospital["address"] or "Not available" }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            🗺️ District
+                        </strong>
+
+                        {{ hospital["district"] or "Not available" }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            🏙️ City
+                        </strong>
+
+                        {{ hospital["city"] or "Not available" }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            🏘️ Village
+                        </strong>
+
+                        {{ hospital["village"] or "Not available" }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            📞 Contact
+                        </strong>
+
+                        {{ hospital["contact"] or "Not available" }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            🛏️ General Beds
+                        </strong>
+
+                        {{ hospital["general_beds"] or 0 }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            🏥 ICU Beds
+                        </strong>
+
+                        {{ hospital["icu_beds"] or 0 }}
+
+                    </div>
+
+
+                    <div class="hospital-detail">
+
+                        <strong>
+                            🚨 Emergency Beds
+                        </strong>
+
+                        {{ hospital["emergency_beds"] or 0 }}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🏥
+                </div>
+
+                <h2>
+                    No Hospitals Registered
+                </h2>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- REGISTERED USERS -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <div class="reports-title">
+
+            <h2>
+                👥 Registered Users
+            </h2>
+
+        </div>
+
+
+        {% if users %}
+
+
+            {% for user in users %}
+
+
+            <div class="user-card">
+
+                <strong>
+                    👤 Name:
+                </strong>
+
+                {{ user["name"] or "Not available" }}
+
+                <br>
+                <br>
+
+                <strong>
+                    📧 Email:
+                </strong>
+
+                {{ user["email"] or "Not available" }}
+
+            </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    👥
+                </div>
+
+                <h2>
+                    No Registered Users
+                </h2>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
 
 
 </div>

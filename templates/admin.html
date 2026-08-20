@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RAHE - Admin Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+        }
+
+        .admin-container {
+
+            width: 400px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.25);
+
+        }
+
+        .admin-icon {
+
+            width: 80px;
+
+            height: 80px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #667eea;
+
+            color: white;
+
+            font-size: 38px;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #333;
+
+            margin-bottom: 8px;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #777;
+
+            margin-bottom: 30px;
+
+        }
+
+        .form-group {
+
+            margin-bottom: 20px;
+
+        }
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+            color: #444;
+
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+        input:focus {
+
+            border-color: #667eea;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(102,126,234,0.15);
+
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #667eea;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+        }
+
+        button:hover {
+
+            background: #5568d9;
+
+            transform: translateY(-1px);
+
+        }
+
+        .error {
+
+            background: #ffe5e5;
+
+            color: #c62828;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+
+        }
+
+        .success {
+
+            background: #e5f8e9;
+
+            color: #218838;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+
+        }
+
+        .back {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #667eea;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+        .back:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .credentials {
+
+            margin-top: 25px;
+
+            padding: 12px;
+
+            background: #f5f5f5;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            color: #666;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="admin-container">
+
+
+    <div class="admin-icon">
+        🔐
+    </div>
+
+
+    <h1>Admin Login</h1>
+
+    <p class="subtitle">
+        RAHE Emergency Hospital Bed Finder
+    </p>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="{{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <form method="POST"
+          action="{{ url_for('admin') }}">
+
+
+        <div class="form-group">
+
+            <label for="username">
+                Admin Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter admin username"
+                required
+                autocomplete="username"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="password">
+                Admin Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+                autocomplete="current-password"
+            >
+
+        </div>
+
+
+        <button type="submit">
+            Login to Admin Dashboard
+        </button>
+
+
+    </form>
+
+
+    <a href="{{ url_for('index') }}"
+       class="back">
+
+        ← Back to Home
+
+    </a>
+
+
+    <div class="credentials">
+
+        <strong>Demo Admin</strong><br>
+
+        Username: admin<br>
+
+        Password: admin123
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -2,11 +2,8 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>RAHE - Search Hospital</title>
 
@@ -67,8 +64,6 @@
             border-radius: 8px;
         }
 
-        /* HOSPITAL LOGIN BUTTON */
-
         .hospital-login-btn {
             background: #7b2cff;
             color: white !important;
@@ -127,7 +122,7 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(3,1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
@@ -157,9 +152,9 @@
         }
 
         .search-button {
-            grid-column: 1/-1;
+            grid-column: 1 / -1;
             border: none;
-            background: linear-gradient(90deg,#086cff,#00a8df);
+            background: linear-gradient(90deg, #086cff, #00a8df);
             color: white;
             padding: 14px;
             border-radius: 10px;
@@ -173,7 +168,7 @@
         }
 
         .clear-button {
-            grid-column: 1/-1;
+            grid-column: 1 / -1;
             text-align: center;
             text-decoration: none;
             color: #1457a6;
@@ -205,7 +200,7 @@
 
         .hospital-grid {
             display: grid;
-            grid-template-columns: repeat(2,1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 25px;
         }
 
@@ -256,7 +251,7 @@
 
         .beds {
             display: grid;
-            grid-template-columns: repeat(3,1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-top: 15px;
         }
@@ -378,7 +373,7 @@
         }
 
         /* =========================
-           COMMON POPUP
+           POPUP
         ========================= */
 
         .popup-overlay {
@@ -450,10 +445,6 @@
             margin-bottom: 20px;
         }
 
-        /* =========================
-           CALL POPUP BUTTONS
-        ========================= */
-
         .popup-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -494,9 +485,9 @@
             background: #333;
         }
 
-        /* =====================================================
-           HOSPITAL LOGIN / REGISTER
-        ===================================================== */
+        /* =========================
+           AUTH
+        ========================= */
 
         .auth-box {
             width: 430px;
@@ -635,7 +626,7 @@
            RESPONSIVE
         ========================= */
 
-        @media (max-width:900px) {
+        @media (max-width: 900px) {
 
             .form-grid {
                 grid-template-columns: 1fr;
@@ -647,7 +638,7 @@
 
         }
 
-        @media (max-width:650px) {
+        @media (max-width: 650px) {
 
             .navbar {
                 flex-direction: column;
@@ -683,13 +674,11 @@
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      NAVBAR
-===================================================== -->
+========================= -->
 
 <nav class="navbar">
 
@@ -711,21 +700,15 @@
             Nearest
         </a>
 
-        <!-- HOSPITAL LOGIN -->
-
         <a href="javascript:void(0)"
            class="hospital-login-btn"
            onclick="openHospitalAuth()">
-
             🏥 Hospital Login
-
         </a>
 
         <a href="{{ url_for('logout') }}"
            class="logout">
-
             Logout
-
         </a>
 
     </div>
@@ -733,14 +716,11 @@
 </nav>
 
 
-<!-- =====================================================
+<!-- =========================
      MAIN
-===================================================== -->
+========================= -->
 
 <div class="container">
-
-
-    <!-- HEADING -->
 
     <div class="heading">
 
@@ -755,9 +735,9 @@
     </div>
 
 
-    <!-- =================================================
+    <!-- =========================
          SEARCH FORM
-    ================================================== -->
+    ========================= -->
 
     <div class="search-box">
 
@@ -788,14 +768,14 @@
 
                         {% for d in districts %}
 
-                            <option value="{{ d }}"
-                                {% if district == d %}
-                                    selected
-                                {% endif %}>
+                        <option value="{{ d }}"
+                            {% if district == d %}
+                                selected
+                            {% endif %}>
 
-                                {{ d }}
+                            {{ d }}
 
-                            </option>
+                        </option>
 
                         {% endfor %}
 
@@ -869,7 +849,7 @@
                 </div>
 
 
-                <!-- SEARCH -->
+                <!-- SEARCH BUTTON -->
 
                 <button type="submit"
                         class="search-button">
@@ -895,9 +875,9 @@
     </div>
 
 
-    <!-- =================================================
+    <!-- =========================
          RESULTS
-    ================================================== -->
+    ========================= -->
 
     <div class="result-heading">
 
@@ -914,237 +894,223 @@
 
     {% if hospitals %}
 
-        <div class="hospital-grid">
+    <div class="hospital-grid">
 
-            {% for hospital in hospitals %}
+        {% for hospital in hospitals %}
 
-                <div class="hospital-card">
+        <div class="hospital-card">
 
 
-                    <!-- TITLE -->
+            <!-- TITLE -->
 
-                    <div class="hospital-title">
+            <div class="hospital-title">
 
-                        <h3>
-                            {{ hospital["hospital_name"] }}
-                        </h3>
+                <h3>
+                    {{ hospital["hospital_name"] }}
+                </h3>
 
-                        <div class="hospital-icon">
-                            🏥
-                        </div>
+                <div class="hospital-icon">
+                    🏥
+                </div>
 
-                    </div>
+            </div>
 
 
-                    <!-- INFORMATION -->
+            <!-- INFORMATION -->
 
-                    <div class="hospital-info">
+            <div class="hospital-info">
 
-                        <div>
+                <div>
+                    <strong>
+                        📍 Address:
+                    </strong>
 
-                            <strong>
-                                📍 Address:
-                            </strong>
+                    {{ hospital["address"] or "Not available" }}
+                </div>
 
-                            {{ hospital["address"] or "Not available" }}
 
-                        </div>
+                <div>
+                    <strong>
+                        🏙️ District:
+                    </strong>
 
+                    {{ hospital["district"] or "Not available" }}
+                </div>
 
-                        <div>
 
-                            <strong>
-                                🏙️ District:
-                            </strong>
+                <div>
+                    <strong>
+                        📌 City:
+                    </strong>
 
-                            {{ hospital["district"] or "Not available" }}
+                    {{ hospital["city"] or "Not available" }}
+                </div>
 
-                        </div>
 
+                {% if hospital["village"] %}
 
-                        <div>
+                <div>
+                    <strong>
+                        🏘️ Village:
+                    </strong>
 
-                            <strong>
-                                📌 City:
-                            </strong>
+                    {{ hospital["village"] }}
+                </div>
 
-                            {{ hospital["city"] or "Not available" }}
+                {% endif %}
 
-                        </div>
 
+                <div>
+                    <strong>
+                        📞 Contact:
+                    </strong>
 
-                        {% if hospital["village"] %}
+                    {{ hospital["contact"] or "Not available" }}
+                </div>
 
-                            <div>
+            </div>
 
-                                <strong>
-                                    🏘️ Village:
-                                </strong>
 
-                                {{ hospital["village"] }}
+            <!-- BED COUNTS -->
 
-                            </div>
+            <div class="beds">
 
-                        {% endif %}
+                <div class="bed-box">
 
+                    <strong>
+                        {{ hospital["general_beds"] or 0 }}
+                    </strong>
 
-                        <div>
-
-                            <strong>
-                                📞 Contact:
-                            </strong>
-
-                            {{ hospital["contact"] or "Not available" }}
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- BED COUNTS -->
-
-                    <div class="beds">
-
-                        <div class="bed-box">
-
-                            <strong>
-                                {{ hospital["general_beds"] or 0 }}
-                            </strong>
-
-                            <span>
-                                General Beds
-                            </span>
-
-                        </div>
-
-
-                        <div class="bed-box">
-
-                            <strong>
-                                {{ hospital["icu_beds"] or 0 }}
-                            </strong>
-
-                            <span>
-                                ICU Beds
-                            </span>
-
-                        </div>
-
-
-                        <div class="bed-box emergency-bed">
-
-                            <strong>
-                                {{ hospital["emergency_beds"] or 0 }}
-                            </strong>
-
-                            <span>
-                                Emergency Beds
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- BUTTONS -->
-
-                    <div class="hospital-buttons">
-
-
-                        <!-- CALL -->
-
-                        {% if hospital["contact"] %}
-
-                            <button
-                                type="button"
-                                class="btn call-btn"
-                                data-hospital-name="{{ hospital['hospital_name'] | e }}"
-                                data-contact="{{ hospital['contact'] | e }}"
-                                onclick="showCallPopupFromButton(this)">
-
-                                📞 Call
-
-                            </button>
-
-                        {% else %}
-
-                            <button
-                                type="button"
-                                class="btn call-btn"
-                                onclick="showNoContactPopup()">
-
-                                📞 Contact N/A
-
-                            </button>
-
-                        {% endif %}
-
-
-                        <!-- MAP -->
-
-                        {% if hospital["latitude"] is not none
-                              and hospital["longitude"] is not none %}
-
-                            <a
-                                href="https://www.google.com/maps/dir/?api=1&destination={{ hospital['latitude'] }},{{ hospital['longitude'] }}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="btn map-btn">
-
-                                📍 Directions
-
-                            </a>
-
-                        {% else %}
-
-                            <a
-                                href="https://www.google.com/maps/search/?api=1&query={{ hospital['hospital_name'] | urlencode }}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="btn map-btn">
-
-                                📍 View Map
-
-                            </a>
-
-                        {% endif %}
-
-                    </div>
-
+                    <span>
+                        General Beds
+                    </span>
 
                 </div>
 
-            {% endfor %}
+
+                <div class="bed-box">
+
+                    <strong>
+                        {{ hospital["icu_beds"] or 0 }}
+                    </strong>
+
+                    <span>
+                        ICU Beds
+                    </span>
+
+                </div>
+
+
+                <div class="bed-box emergency-bed">
+
+                    <strong>
+                        {{ hospital["emergency_beds"] or 0 }}
+                    </strong>
+
+                    <span>
+                        Emergency Beds
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="hospital-buttons">
+
+
+                <!-- CALL -->
+
+                {% if hospital["contact"] %}
+
+                <button
+                    type="button"
+                    class="btn call-btn"
+                    data-hospital-name="{{ hospital['hospital_name'] | e }}"
+                    data-contact="{{ hospital['contact'] | e }}"
+                    onclick="showCallPopupFromButton(this)">
+
+                    📞 Call
+
+                </button>
+
+                {% else %}
+
+                <button
+                    type="button"
+                    class="btn call-btn"
+                    onclick="showNoContactPopup()">
+
+                    📞 Contact N/A
+
+                </button>
+
+                {% endif %}
+
+
+                <!-- MAP -->
+
+                {% if hospital["latitude"] is not none
+                      and hospital["longitude"] is not none %}
+
+                <a
+                    href="https://www.google.com/maps/dir/?api=1&destination={{ hospital['latitude'] }},{{ hospital['longitude'] }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn map-btn">
+
+                    📍 Directions
+
+                </a>
+
+                {% else %}
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query={{ hospital['hospital_name'] | urlencode }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn map-btn">
+
+                    📍 View Map
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
 
         </div>
+
+        {% endfor %}
+
+    </div>
 
 
     {% else %}
 
 
-        <!-- NO RESULT -->
+    <!-- NO RESULT -->
 
-        <div class="no-result">
+    <div class="no-result">
 
-            <div class="no-result-icon">
-                🏥
-            </div>
-
-            <h2>
-                No Hospitals Found
-            </h2>
-
-            <p>
-
-                No hospital matches your current search.
-
-                <br>
-
-                Try another district, city or bed type.
-
-            </p>
-
+        <div class="no-result-icon">
+            🏥
         </div>
+
+        <h2>
+            No Hospitals Found
+        </h2>
+
+        <p>
+            No hospital matches your current search.
+            <br>
+            Try another district, city or bed type.
+        </p>
+
+    </div>
 
     {% endif %}
 
@@ -1163,13 +1129,12 @@
 
     </div>
 
-
 </div>
 
 
-<!-- =====================================================
-     CALL HOSPITAL POPUP
-===================================================== -->
+<!-- =========================
+     CALL POPUP
+========================= -->
 
 <div id="callPopup"
      class="popup-overlay">
@@ -1233,9 +1198,9 @@
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      NO CONTACT POPUP
-===================================================== -->
+========================= -->
 
 <div id="noContactPopup"
      class="popup-overlay">
@@ -1270,17 +1235,15 @@
 </div>
 
 
-<!-- =====================================================
-     HOSPITAL LOGIN / REGISTER POPUP
-===================================================== -->
+<!-- =========================
+     HOSPITAL LOGIN / REGISTER
+========================= -->
 
 <div id="hospitalAuthPopup"
      class="popup-overlay">
 
     <div class="auth-box">
 
-
-        <!-- ICON -->
 
         <div class="auth-icon">
             🏥
@@ -1292,7 +1255,7 @@
         </h2>
 
 
-        <!-- LOGIN / REGISTER TABS -->
+        <!-- TABS -->
 
         <div class="auth-tabs">
 
@@ -1320,9 +1283,7 @@
         </div>
 
 
-        <!-- =================================================
-             LOGIN FORM
-        ================================================== -->
+        <!-- LOGIN -->
 
         <form
             id="hospitalLoginForm"
@@ -1371,9 +1332,7 @@
         </form>
 
 
-        <!-- =================================================
-             REGISTER FORM
-        ================================================== -->
+        <!-- REGISTER -->
 
         <form
             id="hospitalRegisterForm"
@@ -1491,9 +1450,9 @@
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      FOOTER
-===================================================== -->
+========================= -->
 
 <footer>
 
@@ -1503,16 +1462,15 @@
 </footer>
 
 
-<!-- =====================================================
+<!-- =========================
      JAVASCRIPT
-===================================================== -->
+========================= -->
 
 <script>
 
-
-/* =====================================================
+/* =========================
    CALL POPUP
-===================================================== */
+========================= */
 
 function showCallPopupFromButton(button) {
 
@@ -1522,22 +1480,17 @@ function showCallPopupFromButton(button) {
     var contactNumber =
         button.getAttribute("data-contact");
 
-
     document.getElementById("popupHospitalName").textContent =
         hospitalName;
-
 
     document.getElementById("popupNumber").textContent =
         contactNumber;
 
-
     document.getElementById("callNowButton").href =
         "tel:" + contactNumber;
 
-
     document.getElementById("callPopup").style.display =
         "flex";
-
 }
 
 
@@ -1548,19 +1501,17 @@ function closeCallPopup() {
 
     document.getElementById("callNowButton").href =
         "#";
-
 }
 
 
-/* =====================================================
+/* =========================
    NO CONTACT POPUP
-===================================================== */
+========================= */
 
 function showNoContactPopup() {
 
     document.getElementById("noContactPopup").style.display =
         "flex";
-
 }
 
 
@@ -1568,13 +1519,12 @@ function closeNoContactPopup() {
 
     document.getElementById("noContactPopup").style.display =
         "none";
-
 }
 
 
-/* =====================================================
-   HOSPITAL LOGIN / REGISTER POPUP
-===================================================== */
+/* =========================
+   HOSPITAL AUTH
+========================= */
 
 function openHospitalAuth() {
 
@@ -1582,7 +1532,6 @@ function openHospitalAuth() {
         "flex";
 
     showHospitalLogin();
-
 }
 
 
@@ -1590,13 +1539,12 @@ function closeHospitalAuth() {
 
     document.getElementById("hospitalAuthPopup").style.display =
         "none";
-
 }
 
 
-/* =====================================================
+/* =========================
    SHOW LOGIN
-===================================================== */
+========================= */
 
 function showHospitalLogin() {
 
@@ -1606,19 +1554,17 @@ function showHospitalLogin() {
     document.getElementById("hospitalRegisterForm")
         .classList.remove("active");
 
-
     document.getElementById("loginTab")
         .classList.add("active");
 
     document.getElementById("registerTab")
         .classList.remove("active");
-
 }
 
 
-/* =====================================================
+/* =========================
    SHOW REGISTER
-===================================================== */
+========================= */
 
 function showHospitalRegister() {
 
@@ -1628,19 +1574,17 @@ function showHospitalRegister() {
     document.getElementById("hospitalRegisterForm")
         .classList.add("active");
 
-
     document.getElementById("loginTab")
         .classList.remove("active");
 
     document.getElementById("registerTab")
         .classList.add("active");
-
 }
 
 
-/* =====================================================
+/* =========================
    OUTSIDE CLICK
-===================================================== */
+========================= */
 
 window.addEventListener("click", function(event) {
 
@@ -1677,9 +1621,9 @@ window.addEventListener("click", function(event) {
 });
 
 
-/* =====================================================
+/* =========================
    ESC KEY
-===================================================== */
+========================= */
 
 document.addEventListener("keydown", function(event) {
 
@@ -1695,9 +1639,7 @@ document.addEventListener("keydown", function(event) {
 
 });
 
-
 </script>
-
 
 </body>
 

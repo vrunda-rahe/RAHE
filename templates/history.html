@@ -3,149 +3,223 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Accident History - RAHE</title>
+    <title>Accident History</title>
 
     <style>
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
+            background: #f4f6f9;
+            color: #333;
         }
 
         /* ================= NAVBAR ================= */
 
         .navbar {
-            background: #d90429;
+            background: #111827;
             color: white;
-            padding: 16px 35px;
+            padding: 16px 30px;
 
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
+        .navbar h2 {
+            font-size: 22px;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
-            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: white;
             text-decoration: none;
-            font-weight: bold;
+            color: white;
+
+            background: #374151;
+
+            padding: 9px 15px;
+
+            border-radius: 6px;
+
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
-            text-decoration: underline;
+            background: #2563eb;
         }
 
-        /* ================= MAIN ================= */
+        /* ================= CONTAINER ================= */
 
         .container {
-            width: 92%;
+            width: 95%;
             max-width: 1200px;
 
-            margin: 35px auto;
+            margin: 30px auto;
         }
 
-        .heading {
-            background: white;
-            padding: 25px;
+        /* ================= TITLE ================= */
 
-            border-radius: 15px;
-
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
+        .page-title {
+            text-align: center;
             margin-bottom: 25px;
         }
 
-        .heading h1 {
-            margin: 0 0 8px 0;
-            color: #d90429;
+        .page-title h1 {
+            font-size: 30px;
+            color: #111827;
+            margin-bottom: 8px;
         }
 
-        .heading p {
-            margin: 0;
-            color: #666;
+        .page-title p {
+            color: #6b7280;
         }
 
-        /* ================= REPORT CARD ================= */
+        /* ================= FLASH ================= */
 
-        .report-card {
+        .flash {
+            background: #dbeafe;
+            color: #1e40af;
+
+            padding: 12px 18px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty-box {
             background: white;
 
-            border-radius: 15px;
+            padding: 50px 20px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .empty-box h3 {
+            color: #374151;
+            margin-bottom: 10px;
+        }
+
+        .empty-box p {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .report-btn {
+            display: inline-block;
+
+            background: #dc2626;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 20px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+        }
+
+        .report-btn:hover {
+            background: #b91c1c;
+        }
+
+        /* ================= ACCIDENT CARD ================= */
+
+        .accident-card {
+            background: white;
+
+            margin-bottom: 25px;
+
+            border-radius: 14px;
 
             padding: 22px;
 
-            margin-bottom: 20px;
-
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 
-            border-left: 5px solid #d90429;
+            border-left: 5px solid #dc2626;
         }
 
-        .report-header {
+        /* ================= CARD HEADER ================= */
+
+        .card-header {
             display: flex;
 
             justify-content: space-between;
-
             align-items: center;
 
+            gap: 15px;
+
             margin-bottom: 18px;
+
+            flex-wrap: wrap;
         }
 
-        .report-header h2 {
-            margin: 0;
-
-            color: #333;
-
-            font-size: 20px;
+        .card-header h3 {
+            color: #111827;
+            font-size: 21px;
         }
 
         /* ================= STATUS ================= */
 
         .status {
-            padding: 7px 14px;
+            padding: 7px 13px;
 
             border-radius: 20px;
 
             font-size: 13px;
 
             font-weight: bold;
+
+            background: #fef3c7;
+            color: #92400e;
         }
 
-        .pending {
-            background: #fff3cd;
-            color: #856404;
+        .status.pending {
+            background: #fef3c7;
+            color: #92400e;
         }
 
-        .process {
-            background: #cfe2ff;
-            color: #084298;
+        .status.resolved,
+        .status.completed {
+            background: #dcfce7;
+            color: #166534;
         }
 
-        .completed {
-            background: #d1e7dd;
-            color: #0f5132;
+        .status.rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ================= CARD CONTENT ================= */
+
+        .card-content {
+            display: grid;
+
+            grid-template-columns: 1fr 280px;
+
+            gap: 25px;
         }
 
         /* ================= DETAILS ================= */
@@ -153,167 +227,261 @@
         .details {
             display: grid;
 
-            grid-template-columns:
-                repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
 
             gap: 15px;
         }
 
-        .detail {
-            background: #f8f9fa;
+        .detail-box {
+            background: #f9fafb;
 
             padding: 13px;
 
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
-        .detail strong {
+        .detail-box strong {
             display: block;
 
-            color: #555;
+            color: #6b7280;
 
             font-size: 13px;
 
             margin-bottom: 5px;
         }
 
-        .detail span {
-            color: #111;
+        .detail-box span {
+            color: #111827;
 
             font-size: 15px;
+
+            word-break: break-word;
         }
 
         .description {
-            margin-top: 15px;
-
-            background: #f8f9fa;
-
-            padding: 15px;
-
-            border-radius: 10px;
-        }
-
-        .description strong {
-            display: block;
-
-            margin-bottom: 7px;
-
-            color: #555;
+            grid-column: 1 / -1;
         }
 
         /* ================= IMAGE ================= */
 
-        .accident-image {
-            margin-top: 18px;
+        .image-section {
+            text-align: center;
         }
 
-        .accident-image img {
-            width: 220px;
+        .image-section h4 {
+            margin-bottom: 10px;
 
-            max-width: 100%;
+            color: #374151;
+        }
+
+        .accident-image {
+            width: 100%;
+
+            max-width: 280px;
+
+            height: 190px;
+
+            object-fit: cover;
 
             border-radius: 10px;
 
             border: 1px solid #ddd;
+
+            cursor: pointer;
+
+            transition: 0.3s;
         }
 
-        /* ================= EMPTY ================= */
-
-        .empty {
-            background: white;
-
-            padding: 50px 20px;
-
-            text-align: center;
-
-            border-radius: 15px;
-
-            box-shadow:
-                0 4px 15px rgba(0,0,0,0.08);
+        .accident-image:hover {
+            transform: scale(1.02);
         }
 
-        .empty-icon {
-            font-size: 55px;
+        .no-image {
+            width: 100%;
 
-            margin-bottom: 15px;
+            max-width: 280px;
+
+            height: 190px;
+
+            background: #f3f4f6;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #6b7280;
+
+            border: 1px dashed #9ca3af;
+
+            margin: auto;
         }
 
-        .empty h2 {
-            margin: 0 0 10px;
+        /* ================= FOOTER ================= */
 
-            color: #555;
+        .card-footer {
+            margin-top: 20px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid #e5e7eb;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
         }
 
-        .empty p {
-            color: #777;
+        .date {
+            color: #6b7280;
+
+            font-size: 14px;
         }
 
-        .report-btn {
-            display: inline-block;
-
-            margin-top: 15px;
-
-            background: #d90429;
+        .location-btn {
+            background: #2563eb;
 
             color: white;
 
             text-decoration: none;
 
-            padding: 12px 22px;
+            padding: 9px 15px;
 
-            border-radius: 8px;
+            border-radius: 6px;
 
-            font-weight: bold;
+            font-size: 14px;
         }
 
-        .report-btn:hover {
-            background: #b80321;
+        .location-btn:hover {
+            background: #1d4ed8;
         }
 
-        /* ================= FOOTER ================= */
+        /* ================= BACK BUTTON ================= */
 
-        footer {
+        .bottom-buttons {
             text-align: center;
 
-            padding: 25px;
-
-            color: #777;
-
-            margin-top: 30px;
+            margin: 30px 0;
         }
 
-        /* ================= MOBILE ================= */
+        .back-btn {
+            display: inline-block;
 
-        @media (max-width: 700px) {
+            background: #374151;
 
-            .navbar {
-                padding: 15px;
+            color: white;
 
-                flex-direction: column;
+            text-decoration: none;
 
-                gap: 12px;
-            }
+            padding: 11px 20px;
 
-            .nav-links {
-                gap: 12px;
-            }
+            border-radius: 7px;
+        }
 
-            .container {
-                width: 94%;
+        .back-btn:hover {
+            background: #111827;
+        }
+
+        /* ================= IMAGE MODAL ================= */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            z-index: 9999;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0,0,0,0.85);
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+
+            max-height: 85%;
+
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+
+            top: 20px;
+
+            right: 35px;
+
+            color: white;
+
+            font-size: 40px;
+
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .card-content {
+                grid-template-columns: 1fr;
             }
 
             .details {
                 grid-template-columns: 1fr;
             }
 
-            .report-header {
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                gap: 10px;
+            .image-section {
+                margin-top: 10px;
             }
 
+            .accident-image,
+            .no-image {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                width: 92%;
+            }
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .navbar h2 {
+                font-size: 18px;
+            }
+
+            .nav-links a {
+                padding: 7px 10px;
+                font-size: 13px;
+            }
+
+            .page-title h1 {
+                font-size: 24px;
+            }
+
+            .accident-card {
+                padding: 15px;
+            }
         }
 
     </style>
@@ -324,219 +492,381 @@
 <body>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <div class="navbar">
 
-    <div class="logo">
-        🚑 RAHE
-    </div>
+    <h2>
+        🚨 Emergency Accident Portal
+    </h2>
+
 
     <div class="nav-links">
 
-        <a href="{{ url_for('dashboard') }}">
+        <!-- IMPORTANT:
+             home endpoint वापरलेला नाही.
+             Direct "/" वापरले आहे.
+        -->
+
+        <a href="/">
             Home
         </a>
 
-        <a href="{{ url_for('report') }}">
+
+        <a href="/report">
             Report Accident
         </a>
 
-        <a href="{{ url_for('history') }}">
-            History
+
+        <a href="/history">
+            Accident History
         </a>
 
-        <a href="{{ url_for('logout') }}">
-            Logout
-        </a>
+
+        {% if session.get('user_id') %}
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="/login">
+                Login
+            </a>
+
+        {% endif %}
 
     </div>
 
 </div>
 
 
-<!-- ================= MAIN ================= -->
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
 
 <div class="container">
 
 
-    <div class="heading">
+    <!-- PAGE TITLE -->
+
+    <div class="page-title">
 
         <h1>
             📋 Accident History
         </h1>
 
         <p>
-            View your previously submitted accident reports.
+            View previously submitted accident reports
         </p>
 
     </div>
 
 
-    {% if accidents %}
+
+    <!-- =================================================
+         FLASH MESSAGES
+    ================================================== -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="flash">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+
+    <!-- =================================================
+         ACCIDENT RECORDS
+    ================================================== -->
+
+    {% if accidents and accidents|length > 0 %}
 
 
         {% for accident in accidents %}
 
 
-        <div class="report-card">
+        <div class="accident-card">
 
 
-            <!-- REPORT HEADER -->
+            <!-- CARD HEADER -->
 
-            <div class="report-header">
+            <div class="card-header">
 
-                <h2>
-                    🚨 Accident Report #{{ accident["id"] }}
-                </h2>
+                <h3>
+
+                    🚨 Accident Report #{{ accident['id'] }}
+
+                </h3>
 
 
-                {% if accident["status"] == "Completed" %}
+                {% set current_status = accident['status'] or 'Pending' %}
 
-                    <span class="status completed">
-                        ✓ Completed
-                    </span>
 
-                {% elif accident["status"] == "In Process" %}
+                <span class="status {{ current_status|lower }}">
 
-                    <span class="status process">
-                        ⏳ In Process
-                    </span>
+                    {{ current_status }}
 
-                {% else %}
+                </span>
 
-                    <span class="status pending">
-                        ⏰ Pending
-                    </span>
+            </div>
+
+
+
+            <!-- =================================================
+                 CARD CONTENT
+            ================================================== -->
+
+            <div class="card-content">
+
+
+                <!-- DETAILS -->
+
+                <div class="details">
+
+
+                    <!-- NAME -->
+
+                    {% if accident['name'] is defined %}
+
+                    <div class="detail-box">
+
+                        <strong>
+                            👤 Name
+                        </strong>
+
+                        <span>
+
+                            {{ accident['name'] or 'Not Available' }}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <!-- MOBILE -->
+
+                    {% if accident['mobile'] is defined %}
+
+                    <div class="detail-box">
+
+                        <strong>
+                            📱 Mobile
+                        </strong>
+
+                        <span>
+
+                            {{ accident['mobile'] or 'Not Available' }}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <!-- VEHICLE -->
+
+                    {% if accident['vehicle'] is defined %}
+
+                    <div class="detail-box">
+
+                        <strong>
+                            🚗 Vehicle
+                        </strong>
+
+                        <span>
+
+                            {{ accident['vehicle'] or 'Not Available' }}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <!-- LOCATION -->
+
+                    {% if accident['location'] is defined %}
+
+                    <div class="detail-box">
+
+                        <strong>
+                            📍 Accident Location
+                        </strong>
+
+                        <span>
+
+                            {{ accident['location'] or 'Not Available' }}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    {% if accident['description'] is defined %}
+
+                    <div class="detail-box description">
+
+                        <strong>
+                            📝 Description
+                        </strong>
+
+                        <span>
+
+                            {{ accident['description'] or 'No description provided.' }}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACCIDENT IMAGE
+                ================================================== -->
+
+                <div class="image-section">
+
+
+                    <h4>
+                        📷 Accident Image
+                    </h4>
+
+
+                    {% if accident['image'] %}
+
+
+                        <img
+
+                            class="accident-image"
+
+                            src="{{ url_for('uploaded_file', filename=accident['image']) }}"
+
+                            alt="Accident Image"
+
+                            onclick="openImage(this.src)"
+
+                            onerror="imageError(this)"
+
+                        >
+
+
+                        <div
+                            class="no-image"
+                            style="display:none;"
+                        >
+                            Image not available
+                        </div>
+
+
+                    {% else %}
+
+
+                        <div class="no-image">
+
+                            No image uploaded
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CARD FOOTER
+            ================================================== -->
+
+            <div class="card-footer">
+
+
+                <!-- DATE -->
+
+                <div class="date">
+
+
+                    {% if accident['created_at'] is defined and accident['created_at'] %}
+
+                        🕒 {{ accident['created_at'] }}
+
+                    {% else %}
+
+                        🕒 Date not available
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- GOOGLE MAP -->
+
+                {% if accident['location'] %}
+
+
+                    <a
+
+                        class="location-btn"
+
+                        href="https://www.google.com/maps/search/?api=1&query={{ accident['location']|urlencode }}"
+
+                        target="_blank"
+
+                    >
+
+                        📍 View Location
+
+                    </a>
+
 
                 {% endif %}
 
-            </div>
-
-
-            <!-- DETAILS -->
-
-            <div class="details">
-
-
-                <div class="detail">
-
-                    <strong>
-                        👤 Full Name
-                    </strong>
-
-                    <span>
-                        {{ accident["name"] or "Not provided" }}
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <strong>
-                        📞 Mobile Number
-                    </strong>
-
-                    <span>
-                        {{ accident["mobile"] or "Not provided" }}
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <strong>
-                        📍 Accident Location
-                    </strong>
-
-                    <span>
-                        {{ accident["location"] or "Not provided" }}
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <strong>
-                        🚗 Vehicle
-                    </strong>
-
-                    <span>
-                        {{ accident["vehicle"] or "Not provided" }}
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <strong>
-                        📅 Report Date
-                    </strong>
-
-                    <span>
-                        {{ accident["created_at"] or "Not available" }}
-                    </span>
-
-                </div>
-
-
-                <div class="detail">
-
-                    <strong>
-                        🆔 Report ID
-                    </strong>
-
-                    <span>
-                        #{{ accident["id"] }}
-                    </span>
-
-                </div>
-
 
             </div>
-
-
-            <!-- DESCRIPTION -->
-
-            {% if accident["description"] %}
-
-            <div class="description">
-
-                <strong>
-                    📝 Description
-                </strong>
-
-                {{ accident["description"] }}
-
-            </div>
-
-            {% endif %}
-
-
-            <!-- IMAGE -->
-
-            {% if accident["image"] %}
-
-            <div class="accident-image">
-
-                <strong>
-                    📷 Accident Image
-                </strong>
-
-                <br><br>
-
-                <img
-                    src="{{ url_for('uploaded_file', filename=accident['image']) }}"
-                    alt="Accident Image"
-                >
-
-            </div>
-
-            {% endif %}
 
 
         </div>
@@ -548,28 +878,39 @@
     {% else %}
 
 
-        <!-- NO HISTORY -->
+        <!-- =================================================
+             NO ACCIDENTS
+        ================================================== -->
 
-        <div class="empty">
+        <div class="empty-box">
 
-            <div class="empty-icon">
-                📋
-            </div>
 
-            <h2>
-                No Accident History
-            </h2>
+            <h3>
+
+                📭 No Accident Reports Found
+
+            </h3>
+
 
             <p>
+
                 You have not submitted any accident reports yet.
+
             </p>
 
+
             <a
-                href="{{ url_for('report') }}"
+
                 class="report-btn"
+
+                href="/report"
+
             >
+
                 🚨 Report Accident
+
             </a>
+
 
         </div>
 
@@ -577,16 +918,155 @@
     {% endif %}
 
 
+
+    <!-- =================================================
+         BACK TO HOME
+    ================================================== -->
+
+    <div class="bottom-buttons">
+
+
+        <a
+
+            class="back-btn"
+
+            href="/"
+
+        >
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
+
+
 </div>
 
 
-<!-- ================= FOOTER ================= -->
 
-<footer>
+<!-- =====================================================
+     IMAGE MODAL
+===================================================== -->
 
-    © 2026 RAHE - Road Accident Hospital Emergency
+<div
 
-</footer>
+    id="imageModal"
+
+    class="modal"
+
+    onclick="closeImage()"
+
+>
+
+
+    <span
+
+        class="close"
+
+        onclick="closeImage()"
+
+    >
+
+        &times;
+
+    </span>
+
+
+    <img
+
+        id="modalImage"
+
+        src=""
+
+        alt="Accident Image"
+
+    >
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* OPEN IMAGE */
+
+function openImage(imageSrc) {
+
+    const modal =
+        document.getElementById("imageModal");
+
+    const modalImage =
+        document.getElementById("modalImage");
+
+
+    modalImage.src = imageSrc;
+
+    modal.style.display = "flex";
+
+}
+
+
+
+/* CLOSE IMAGE */
+
+function closeImage() {
+
+    const modal =
+        document.getElementById("imageModal");
+
+
+    modal.style.display = "none";
+
+}
+
+
+
+/* IMAGE ERROR */
+
+function imageError(image) {
+
+    image.style.display = "none";
+
+
+    const noImage =
+        image.nextElementSibling;
+
+
+    if (noImage) {
+
+        noImage.style.display = "flex";
+
+    }
+
+}
+
+
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeImage();
+
+        }
+
+    }
+);
+
+
+</script>
 
 
 </body>

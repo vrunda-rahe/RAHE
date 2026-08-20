@@ -18,11 +18,13 @@
             font-family: Arial, sans-serif;
         }
 
+
         body {
             min-height: 100vh;
             background: linear-gradient(135deg, #eef5ff, #fff1f5);
             padding-bottom: 50px;
         }
+
 
         /* ================= HEADER ================= */
 
@@ -35,11 +37,13 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
+
         .logo {
             font-size: 28px;
             font-weight: bold;
             color: #1454a4;
         }
+
 
         .nav a {
             text-decoration: none;
@@ -48,9 +52,11 @@
             margin-left: 25px;
         }
 
+
         .nav a:hover {
             color: #e63946;
         }
+
 
         /* ================= MAIN ================= */
 
@@ -60,6 +66,7 @@
             margin: 50px auto;
         }
 
+
         .title {
             text-align: center;
             color: #164f9e;
@@ -67,12 +74,14 @@
             margin-bottom: 10px;
         }
 
+
         .subtitle {
             text-align: center;
             color: #666;
             font-size: 18px;
             margin-bottom: 35px;
         }
+
 
         /* ================= LOCATION ================= */
 
@@ -85,21 +94,25 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
+
         .location-icon {
             font-size: 55px;
             margin-bottom: 10px;
         }
+
 
         .location-box h2 {
             color: #1454a4;
             margin-bottom: 15px;
         }
 
+
         .location-status {
             color: #555;
             margin-bottom: 20px;
             font-size: 16px;
         }
+
 
         .location-btn {
             border: none;
@@ -112,9 +125,11 @@
             cursor: pointer;
         }
 
+
         .location-btn:hover {
             background: #0d3d7a;
         }
+
 
         .location-details {
             display: none;
@@ -124,15 +139,18 @@
             padding: 20px;
         }
 
+
         .location-details p {
             margin: 10px;
             font-size: 17px;
             color: #333;
         }
 
+
         .location-details strong {
             color: #1454a4;
         }
+
 
         .map-btn {
             display: none;
@@ -145,9 +163,11 @@
             font-weight: bold;
         }
 
+
         .map-btn:hover {
             background: #146c43;
         }
+
 
         /* ================= HOSPITAL GRID ================= */
 
@@ -157,6 +177,7 @@
             gap: 25px;
         }
 
+
         /* ================= HOSPITAL CARD ================= */
 
         .hospital-card {
@@ -165,23 +186,43 @@
             border-radius: 20px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             transition: 0.3s;
+            position: relative;
         }
+
 
         .hospital-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
+
         .hospital-card h2 {
             color: #1454a4;
             margin-bottom: 18px;
         }
+
 
         .hospital-card p {
             color: #555;
             margin: 10px 0;
             font-size: 16px;
         }
+
+
+        /* ================= NEAREST BADGE ================= */
+
+        .nearest-badge {
+            display: inline-block;
+            background: #d90429;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(217, 4, 41, 0.25);
+        }
+
 
         /* ================= HOSPITAL LOCATION ================= */
 
@@ -193,20 +234,24 @@
             color: #333;
         }
 
+
         .hospital-location h3 {
             color: #1454a4;
             margin-bottom: 15px;
             font-size: 20px;
         }
 
+
         .hospital-location p {
             margin: 8px 0;
             font-size: 15px;
         }
 
+
         .hospital-location strong {
             color: #1454a4;
         }
+
 
         /* ================= DISTANCE ================= */
 
@@ -218,12 +263,14 @@
             border-left: 5px solid #1454a4;
         }
 
+
         .distance-text {
             color: #086cff !important;
             font-size: 17px !important;
             font-weight: bold;
             margin: 7px 0 !important;
         }
+
 
         .travel-text {
             color: #d90429 !important;
@@ -232,11 +279,13 @@
             margin: 7px 0 !important;
         }
 
+
         .calculate-text {
             color: #777 !important;
             font-size: 14px !important;
             margin-top: 10px !important;
         }
+
 
         /* ================= MAP BUTTON ================= */
 
@@ -252,9 +301,11 @@
             font-weight: bold;
         }
 
+
         .view-map:hover {
             background: #146c43;
         }
+
 
         /* ================= TIME ================= */
 
@@ -268,15 +319,18 @@
             text-align: center;
         }
 
+
         .hospital-time strong {
             color: #1454a4;
         }
+
 
         .current-time {
             font-weight: bold;
             color: #d97706;
             margin-left: 5px;
         }
+
 
         /* ================= BEDS ================= */
 
@@ -287,6 +341,7 @@
             gap: 10px;
         }
 
+
         .bed {
             padding: 13px;
             border-radius: 10px;
@@ -296,16 +351,19 @@
             color: #1454a4;
         }
 
+
         .bed span {
             display: block;
             font-size: 23px;
             margin-top: 5px;
         }
 
+
         .emergency {
             background: #fff0f2;
             color: #d90429;
         }
+
 
         /* ================= CALL BUTTON ================= */
 
@@ -324,9 +382,11 @@
             cursor: pointer;
         }
 
+
         .call-button:hover {
             background: #146c43;
         }
+
 
         /* ================= NO HOSPITAL ================= */
 
@@ -338,19 +398,47 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
+
         .no-hospital-icon {
             font-size: 60px;
             margin-bottom: 15px;
         }
+
 
         .no-hospital h2 {
             color: #d90429;
             margin-bottom: 10px;
         }
 
+
         .no-hospital p {
             color: #666;
         }
+
+
+        /* ================= NEARBY MESSAGE ================= */
+
+        .nearby-message {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+        }
+
+
+        .nearby-message h2 {
+            color: #d90429;
+            margin-bottom: 10px;
+        }
+
+
+        .nearby-message p {
+            color: #666;
+            font-size: 16px;
+        }
+
 
         /* ================= BACK BUTTON ================= */
 
@@ -366,9 +454,11 @@
             font-weight: bold;
         }
 
+
         .back-btn:hover {
             background: #0d3d7a;
         }
+
 
         /* ================= POPUP ================= */
 
@@ -386,6 +476,7 @@
             padding: 20px;
         }
 
+
         .popup-box {
             width: 100%;
             max-width: 420px;
@@ -396,6 +487,7 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
             animation: popupShow 0.25s ease;
         }
+
 
         @keyframes popupShow {
 
@@ -411,21 +503,25 @@
 
         }
 
+
         .popup-icon {
             font-size: 60px;
             margin-bottom: 10px;
         }
+
 
         .popup-box h2 {
             color: #1454a4;
             margin-bottom: 15px;
         }
 
+
         .popup-box p {
             color: #555;
             margin: 10px 0;
             font-size: 17px;
         }
+
 
         .popup-number {
             font-size: 23px !important;
@@ -434,11 +530,13 @@
             margin: 15px 0 !important;
         }
 
+
         .popup-buttons {
             display: flex;
             gap: 12px;
             margin-top: 25px;
         }
+
 
         .popup-call {
             flex: 1;
@@ -452,9 +550,11 @@
             cursor: pointer;
         }
 
+
         .popup-call:hover {
             background: #146c43;
         }
+
 
         .popup-cancel {
             flex: 1;
@@ -468,9 +568,11 @@
             cursor: pointer;
         }
 
+
         .popup-cancel:hover {
             background: #b02a37;
         }
+
 
         /* ================= MOBILE ================= */
 
@@ -483,21 +585,26 @@
                 padding: 20px;
             }
 
+
             .nav a {
                 margin: 0 8px;
             }
+
 
             .hospital-grid {
                 grid-template-columns: 1fr;
             }
 
+
             .beds {
                 grid-template-columns: 1fr;
             }
 
+
             .title {
                 font-size: 28px;
             }
+
 
             .popup-buttons {
                 flex-direction: column;
@@ -521,19 +628,23 @@
         🚑 RAHE
     </div>
 
+
     <div class="nav">
 
         <a href="{{ url_for('dashboard') }}">
             Home
         </a>
 
+
         <a href="{{ url_for('hospital') }}">
             Hospital
         </a>
 
+
         <a href="{{ url_for('nearest') }}">
             Nearest
         </a>
+
 
         <a href="{{ url_for('logout') }}">
             Logout
@@ -548,9 +659,11 @@
 
 <div class="container">
 
+
     <h1 class="title">
         📍 Nearest Hospital
     </h1>
+
 
     <p class="subtitle">
         Find hospitals with available beds near your location
@@ -561,17 +674,21 @@
 
     <div class="location-box">
 
+
         <div class="location-icon">
             📍
         </div>
+
 
         <h2>
             Your Current Location
         </h2>
 
+
         <p id="location-status" class="location-status">
             Click below to get your current location.
         </p>
+
 
         <button
             type="button"
@@ -587,10 +704,14 @@
             id="location-details"
             class="location-details">
 
+
             <p>
 
                 📍
-                <strong>Latitude:</strong>
+
+                <strong>
+                    Latitude:
+                </strong>
 
                 <span id="latitude">
                     -
@@ -598,10 +719,14 @@
 
             </p>
 
+
             <p>
 
                 📍
-                <strong>Longitude:</strong>
+
+                <strong>
+                    Longitude:
+                </strong>
 
                 <span id="longitude">
                     -
@@ -609,16 +734,21 @@
 
             </p>
 
+
             <p>
 
                 🌍
-                <strong>Coordinates:</strong>
+
+                <strong>
+                    Coordinates:
+                </strong>
 
                 <span id="coordinates">
                     -
                 </span>
 
             </p>
+
 
         </div>
 
@@ -633,6 +763,7 @@
 
         </a>
 
+
     </div>
 
 
@@ -640,9 +771,12 @@
 
     {% if hospitals %}
 
+
         <div class="hospital-grid">
 
+
             {% for hospital in hospitals %}
+
 
                 <div
                     class="hospital-card"
@@ -653,46 +787,56 @@
                 >
 
 
-                    <!-- HOSPITAL NAME -->
+                    <!-- ================= HOSPITAL NAME ================= -->
 
                     <h2>
 
                         🏥
+
                         {{ hospital['hospital_name'] }}
 
                     </h2>
 
 
-                    <!-- ADDRESS -->
+                    <!-- ================= ADDRESS ================= -->
 
                     <p>
 
                         📍
-                        <strong>Address:</strong>
+
+                        <strong>
+                            Address:
+                        </strong>
 
                         {{ hospital['address'] or 'Not available' }}
 
                     </p>
 
 
-                    <!-- CITY -->
+                    <!-- ================= CITY ================= -->
 
                     <p>
 
                         🏙️
-                        <strong>City:</strong>
+
+                        <strong>
+                            City:
+                        </strong>
 
                         {{ hospital['city'] or 'Not available' }}
 
                     </p>
 
 
-                    <!-- CONTACT -->
+                    <!-- ================= CONTACT ================= -->
 
                     <p>
 
                         📞
-                        <strong>Contact:</strong>
+
+                        <strong>
+                            Contact:
+                        </strong>
 
                         {{ hospital['contact'] or 'Not available' }}
 
@@ -703,6 +847,7 @@
 
                     <div class="hospital-location">
 
+
                         <h3>
                             📍 Hospital Location
                         </h3>
@@ -710,10 +855,14 @@
 
                         {% if hospital['latitude'] is not none and hospital['longitude'] is not none %}
 
+
                             <p>
 
                                 📌
-                                <strong>Latitude:</strong>
+
+                                <strong>
+                                    Latitude:
+                                </strong>
 
                                 {{ hospital['latitude'] }}
 
@@ -723,7 +872,10 @@
                             <p>
 
                                 📌
-                                <strong>Longitude:</strong>
+
+                                <strong>
+                                    Longitude:
+                                </strong>
 
                                 {{ hospital['longitude'] }}
 
@@ -733,7 +885,10 @@
                             <p>
 
                                 🌍
-                                <strong>Coordinates:</strong>
+
+                                <strong>
+                                    Coordinates:
+                                </strong>
 
                                 {{ hospital['latitude'] }},
                                 {{ hospital['longitude'] }}
@@ -755,11 +910,14 @@
 
                         {% else %}
 
+
                             <p>
                                 ❌ Hospital location is not available.
                             </p>
 
+
                         {% endif %}
+
 
                     </div>
 
@@ -768,9 +926,11 @@
 
                     <div class="distance-box">
 
+
                         <p class="distance-text distance-result">
 
                             📏 Distance:
+
                             Click "Use My Location"
 
                         </p>
@@ -779,6 +939,7 @@
                         <p class="travel-text travel-result">
 
                             ⏱️ Estimated Travel Time:
+
                             Click "Use My Location"
 
                         </p>
@@ -790,6 +951,7 @@
                             average city driving speed.
 
                         </p>
+
 
                     </div>
 
@@ -804,6 +966,7 @@
                             Current Time:
                         </strong>
 
+
                         <span class="current-time">
                             Loading...
                         </span>
@@ -814,6 +977,7 @@
                     <!-- ================= BEDS ================= -->
 
                     <div class="beds">
+
 
                         <div class="bed">
 
@@ -853,12 +1017,14 @@
 
                         </div>
 
+
                     </div>
 
 
                     <!-- ================= CALL BUTTON ================= -->
 
                     {% if hospital['contact'] %}
+
 
                         <button
                             type="button"
@@ -872,12 +1038,15 @@
 
                         </button>
 
+
                     {% endif %}
 
 
                 </div>
 
+
             {% endfor %}
+
 
         </div>
 
@@ -889,17 +1058,21 @@
 
         <div class="no-hospital">
 
+
             <div class="no-hospital-icon">
                 🏥
             </div>
+
 
             <h2>
                 No Available Hospital
             </h2>
 
+
             <p>
                 Currently no hospital has available beds.
             </p>
+
 
         </div>
 
@@ -917,6 +1090,7 @@
 
     </a>
 
+
 </div>
 
 
@@ -930,6 +1104,7 @@
 
 
     <div class="popup-box">
+
 
         <div class="popup-icon">
             📞
@@ -985,7 +1160,9 @@
 
         </div>
 
+
     </div>
+
 
 </div>
 
@@ -998,7 +1175,7 @@
 
 
 /* ================================================= */
-/* GLOBAL VARIABLES */
+/* GLOBAL VARIABLE */
 /* ================================================= */
 
 var selectedHospitalContact = "";
@@ -1014,35 +1191,49 @@ var callButtons =
 
 callButtons.forEach(function(button) {
 
-    button.addEventListener("click", function() {
 
-        var hospitalName =
-            button.getAttribute("data-hospital-name");
-
-        var contact =
-            button.getAttribute("data-contact");
+    button.addEventListener(
+        "click",
+        function() {
 
 
-        selectedHospitalContact = contact;
+            var hospitalName =
+                button.getAttribute(
+                    "data-hospital-name"
+                );
 
 
-        document.getElementById(
-            "popupHospitalName"
-        ).textContent =
-            "🏥 " + hospitalName;
+            var contact =
+                button.getAttribute(
+                    "data-contact"
+                );
 
 
-        document.getElementById(
-            "popupContact"
-        ).textContent =
-            "📞 " + contact;
+            selectedHospitalContact =
+                contact;
 
 
-        document.getElementById(
-            "callPopup"
-        ).style.display = "flex";
+            document.getElementById(
+                "popupHospitalName"
+            ).textContent =
+                "🏥 " + hospitalName;
 
-    });
+
+            document.getElementById(
+                "popupContact"
+            ).textContent =
+                "📞 " + contact;
+
+
+            document.getElementById(
+                "callPopup"
+            ).style.display =
+                "flex";
+
+
+        }
+    );
+
 
 });
 
@@ -1053,13 +1244,19 @@ callButtons.forEach(function(button) {
 
 document.getElementById(
     "popupCancelButton"
-).addEventListener("click", function() {
+).addEventListener(
+    "click",
+    function() {
 
-    document.getElementById(
-        "callPopup"
-    ).style.display = "none";
 
-});
+        document.getElementById(
+            "callPopup"
+        ).style.display =
+            "none";
+
+
+    }
+);
 
 
 /* ================================================= */
@@ -1068,40 +1265,53 @@ document.getElementById(
 
 document.getElementById(
     "popupCallButton"
-).addEventListener("click", function() {
+).addEventListener(
+    "click",
+    function() {
 
-    if (!selectedHospitalContact) {
 
-        alert(
-            "Hospital contact number is not available."
-        );
+        if (!selectedHospitalContact) {
 
-        return;
+
+            alert(
+                "Hospital contact number is not available."
+            );
+
+
+            return;
+
+        }
+
+
+        var phoneNumber =
+            selectedHospitalContact
+            .toString()
+            .replace(
+                /[^0-9+]/g,
+                ""
+            );
+
+
+        if (!phoneNumber) {
+
+
+            alert(
+                "Invalid hospital contact number."
+            );
+
+
+            return;
+
+        }
+
+
+        window.location.href =
+            "tel:" +
+            phoneNumber;
+
 
     }
-
-
-    var phoneNumber =
-        selectedHospitalContact
-        .toString()
-        .replace(/[^0-9+]/g, "");
-
-
-    if (!phoneNumber) {
-
-        alert(
-            "Invalid hospital contact number."
-        );
-
-        return;
-
-    }
-
-
-    window.location.href =
-        "tel:" + phoneNumber;
-
-});
+);
 
 
 /* ================================================= */
@@ -1110,20 +1320,29 @@ document.getElementById(
 
 document.getElementById(
     "callPopup"
-).addEventListener("click", function(event) {
+).addEventListener(
+    "click",
+    function(event) {
 
-    if (
-        event.target ===
-        document.getElementById("callPopup")
-    ) {
 
-        document.getElementById(
-            "callPopup"
-        ).style.display = "none";
+        if (
+            event.target ===
+            document.getElementById(
+                "callPopup"
+            )
+        ) {
+
+
+            document.getElementById(
+                "callPopup"
+            ).style.display =
+                "none";
+
+
+        }
 
     }
-
-});
+);
 
 
 /* ================================================= */
@@ -1134,11 +1353,15 @@ document.addEventListener(
     "keydown",
     function(event) {
 
+
         if (event.key === "Escape") {
+
 
             document.getElementById(
                 "callPopup"
-            ).style.display = "none";
+            ).style.display =
+                "none";
+
 
         }
 
@@ -1152,11 +1375,16 @@ document.addEventListener(
 
 document.getElementById(
     "locationButton"
-).addEventListener("click", function() {
+).addEventListener(
+    "click",
+    function() {
 
-    getLocation();
 
-});
+        getLocation();
+
+
+    }
+);
 
 
 /* ================================================= */
@@ -1164,6 +1392,7 @@ document.getElementById(
 /* ================================================= */
 
 function getLocation() {
+
 
     var status =
         document.getElementById(
@@ -1185,8 +1414,10 @@ function getLocation() {
 
     if (!navigator.geolocation) {
 
+
         status.textContent =
             "❌ Your browser does not support location.";
+
 
         return;
 
@@ -1199,7 +1430,9 @@ function getLocation() {
 
     navigator.geolocation.getCurrentPosition(
 
+
         function(position) {
+
 
             var latitude =
                 position.coords.latitude;
@@ -1253,47 +1486,68 @@ function getLocation() {
                 longitude
             );
 
+
         },
 
 
         function(error) {
 
+
             if (error.code === 1) {
+
 
                 status.textContent =
                     "❌ Location permission denied. Please allow location access.";
 
+
             }
 
+
             else if (error.code === 2) {
+
 
                 status.textContent =
                     "❌ Location unavailable.";
 
+
             }
 
+
             else if (error.code === 3) {
+
 
                 status.textContent =
                     "❌ Location request timed out.";
 
+
             }
 
+
             else {
+
 
                 status.textContent =
                     "❌ Unable to get your location.";
 
+
             }
+
 
         },
 
 
         {
+
+
             enableHighAccuracy: true,
+
             timeout: 10000,
+
             maximumAge: 0
+
+
         }
+
 
     );
 
@@ -1311,7 +1565,9 @@ function calculateDistance(
     lon2
 ) {
 
-    var earthRadius = 6371;
+
+    var earthRadius =
+        6371;
 
 
     var latDifference =
@@ -1327,14 +1583,34 @@ function calculateDistance(
 
 
     var a =
-        Math.sin(latDifference / 2) *
-        Math.sin(latDifference / 2) +
+        Math.sin(
+            latDifference / 2
+        ) *
+        Math.sin(
+            latDifference / 2
+        ) +
 
-        Math.cos(lat1 * Math.PI / 180) *
-        Math.cos(lat2 * Math.PI / 180) *
 
-        Math.sin(lonDifference / 2) *
-        Math.sin(lonDifference / 2);
+        Math.cos(
+            lat1 *
+            Math.PI /
+            180
+        ) *
+
+
+        Math.cos(
+            lat2 *
+            Math.PI /
+            180
+        ) *
+
+
+        Math.sin(
+            lonDifference / 2
+        ) *
+        Math.sin(
+            lonDifference / 2
+        );
 
 
     var c =
@@ -1354,9 +1630,13 @@ function calculateDistance(
 /* TRAVEL TIME */
 /* ================================================= */
 
-function calculateTravelTime(distance) {
+function calculateTravelTime(
+    distance
+) {
 
-    var averageSpeed = 30;
+
+    var averageSpeed =
+        30;
 
 
     var hours =
@@ -1365,7 +1645,9 @@ function calculateTravelTime(distance) {
 
 
     var minutes =
-        Math.round(hours * 60);
+        Math.round(
+            hours * 60
+        );
 
 
     if (minutes < 1) {
@@ -1377,13 +1659,18 @@ function calculateTravelTime(distance) {
 
     if (minutes < 60) {
 
-        return minutes + " minutes";
+
+        return minutes +
+            " minutes";
+
 
     }
 
 
     var wholeHours =
-        Math.floor(minutes / 60);
+        Math.floor(
+            minutes / 60
+        );
 
 
     var remainingMinutes =
@@ -1392,21 +1679,27 @@ function calculateTravelTime(distance) {
 
     if (remainingMinutes === 0) {
 
+
         if (wholeHours === 1) {
+
 
             return "1 hour";
 
+
         }
 
-        return wholeHours + " hours";
+
+        return wholeHours +
+            " hours";
+
 
     }
 
 
     return wholeHours +
-           " hours " +
-           remainingMinutes +
-           " minutes";
+        " hours " +
+        remainingMinutes +
+        " minutes";
 
 }
 
@@ -1420,108 +1713,361 @@ function calculateAllHospitals(
     userLongitude
 ) {
 
-    var hospitals =
-        document.querySelectorAll(
-            ".hospital-card"
+
+    var grid =
+        document.querySelector(
+            ".hospital-grid"
         );
 
 
-    hospitals.forEach(function(card) {
+    if (!grid) {
 
-        var latitudeValue =
-            card.getAttribute(
-                "data-latitude"
-            );
+        return;
 
-
-        var longitudeValue =
-            card.getAttribute(
-                "data-longitude"
-            );
+    }
 
 
-        var distanceElement =
-            card.querySelector(
-                ".distance-result"
-            );
+    var hospitals =
+        Array.from(
+            document.querySelectorAll(
+                ".hospital-card"
+            )
+        );
 
 
-        var timeElement =
-            card.querySelector(
-                ".travel-result"
-            );
+    var hospitalData = [];
 
 
-        if (
-            !latitudeValue ||
-            !longitudeValue
-        ) {
+    /* ============================================= */
+    /* MAXIMUM SEARCH DISTANCE */
+    /* ============================================= */
+
+    var MAX_DISTANCE =
+        10;
+
+
+    /* ============================================= */
+    /* CHECK EVERY HOSPITAL */
+    /* ============================================= */
+
+    hospitals.forEach(
+        function(card) {
+
+
+            var latitudeValue =
+                card.getAttribute(
+                    "data-latitude"
+                );
+
+
+            var longitudeValue =
+                card.getAttribute(
+                    "data-longitude"
+                );
+
+
+            var distanceElement =
+                card.querySelector(
+                    ".distance-result"
+                );
+
+
+            var timeElement =
+                card.querySelector(
+                    ".travel-result"
+                );
+
+
+            /* ========================================= */
+            /* LOCATION NOT AVAILABLE */
+            /* ========================================= */
+
+            if (
+                !latitudeValue ||
+                !longitudeValue
+            ) {
+
+
+                card.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            var hospitalLatitude =
+                parseFloat(
+                    latitudeValue
+                );
+
+
+            var hospitalLongitude =
+                parseFloat(
+                    longitudeValue
+                );
+
+
+            /* ========================================= */
+            /* INVALID LOCATION */
+            /* ========================================= */
+
+            if (
+                isNaN(
+                    hospitalLatitude
+                ) ||
+                isNaN(
+                    hospitalLongitude
+                )
+            ) {
+
+
+                card.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            /* ========================================= */
+            /* CALCULATE DISTANCE */
+            /* ========================================= */
+
+            var distance =
+                calculateDistance(
+
+                    userLatitude,
+
+                    userLongitude,
+
+                    hospitalLatitude,
+
+                    hospitalLongitude
+
+                );
+
+
+            /* ========================================= */
+            /* ONLY 10 KM HOSPITALS */
+            /* ========================================= */
+
+            if (
+                distance >
+                MAX_DISTANCE
+            ) {
+
+
+                card.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            /* ========================================= */
+            /* SHOW HOSPITAL */
+            /* ========================================= */
+
+            card.style.display =
+                "";
+
+
+            /* ========================================= */
+            /* SHOW DISTANCE */
+            /* ========================================= */
 
             distanceElement.textContent =
-                "📏 Distance: Location unavailable";
+                "📏 Distance: " +
+                distance.toFixed(2) +
+                " km";
+
+
+            /* ========================================= */
+            /* TRAVEL TIME */
+            /* ========================================= */
+
+            var travelTime =
+                calculateTravelTime(
+                    distance
+                );
 
 
             timeElement.textContent =
-                "⏱️ Estimated Travel Time: Not available";
+                "⏱️ Estimated Travel Time: " +
+                travelTime;
 
 
-            return;
+            /* ========================================= */
+            /* STORE DATA */
+            /* ========================================= */
+
+            hospitalData.push({
+
+                card: card,
+
+                distance: distance
+
+            });
+
 
         }
+    );
 
 
-        var hospitalLatitude =
-            parseFloat(latitudeValue);
+    /* ============================================= */
+    /* SORT BY DISTANCE */
+    /* ============================================= */
+
+    hospitalData.sort(
+        function(a, b) {
 
 
-        var hospitalLongitude =
-            parseFloat(longitudeValue);
-
-
-        if (
-            isNaN(hospitalLatitude) ||
-            isNaN(hospitalLongitude)
-        ) {
-
-            distanceElement.textContent =
-                "📏 Distance: Location unavailable";
-
-
-            timeElement.textContent =
-                "⏱️ Estimated Travel Time: Not available";
-
-
-            return;
-
-        }
-
-
-        var distance =
-            calculateDistance(
-                userLatitude,
-                userLongitude,
-                hospitalLatitude,
-                hospitalLongitude
+            return (
+                a.distance -
+                b.distance
             );
 
 
-        distanceElement.textContent =
-            "📏 Distance: " +
-            distance.toFixed(2) +
-            " km";
+        }
+    );
 
 
-        var travelTime =
-            calculateTravelTime(
-                distance
+    /* ============================================= */
+    /* DISPLAY NEAREST FIRST */
+    /* ============================================= */
+
+    hospitalData.forEach(
+        function(item, index) {
+
+
+            grid.appendChild(
+                item.card
             );
 
 
-        timeElement.textContent =
-            "⏱️ Estimated Travel Time: " +
-            travelTime;
+            /* ========================================= */
+            /* REMOVE OLD BADGE */
+            /* ========================================= */
 
-    });
+            var oldBadge =
+                item.card.querySelector(
+                    ".nearest-badge"
+                );
+
+
+            if (oldBadge) {
+
+
+                oldBadge.remove();
+
+
+            }
+
+
+            /* ========================================= */
+            /* ADD NEAREST BADGE */
+            /* ========================================= */
+
+            if (
+                index === 0
+            ) {
+
+
+                var badge =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                badge.className =
+                    "nearest-badge";
+
+
+                badge.innerHTML =
+                    "📍 NEAREST HOSPITAL";
+
+
+                item.card.insertBefore(
+
+                    badge,
+
+                    item.card.firstChild
+
+                );
+
+
+            }
+
+
+        }
+    );
+
+
+    /* ============================================= */
+    /* NO NEARBY HOSPITAL */
+    /* ============================================= */
+
+    var oldMessage =
+        document.getElementById(
+            "nearby-message"
+        );
+
+
+    if (oldMessage) {
+
+
+        oldMessage.remove();
+
+
+    }
+
+
+    if (
+        hospitalData.length === 0
+    ) {
+
+
+        var message =
+            document.createElement(
+                "div"
+            );
+
+
+        message.id =
+            "nearby-message";
+
+
+        message.className =
+            "nearby-message";
+
+
+        message.innerHTML =
+
+            "<h2>" +
+            "🏥 No Hospital Nearby" +
+            "</h2>" +
+
+            "<p>" +
+            "No hospital with available beds was found within 10 km of your current location." +
+            "</p>";
+
+
+        grid.parentNode.insertBefore(
+
+            message,
+
+            grid
+
+        );
+
+
+    }
+
 
 }
 
@@ -1532,19 +2078,28 @@ function calculateAllHospitals(
 
 function updateTime() {
 
+
     var now =
         new Date();
 
 
     var time =
         now.toLocaleTimeString(
+
             "en-IN",
+
             {
+
                 hour: "2-digit",
+
                 minute: "2-digit",
+
                 second: "2-digit",
+
                 hour12: true
+
             }
+
         );
 
 
@@ -1554,11 +2109,17 @@ function updateTime() {
         );
 
 
-    timeElements.forEach(function(element) {
+    timeElements.forEach(
+        function(element) {
 
-        element.textContent = time;
 
-    });
+            element.textContent =
+                time;
+
+
+        }
+    );
+
 
 }
 
@@ -1574,6 +2135,7 @@ setInterval(
     updateTime,
     1000
 );
+
 
 </script>
 
